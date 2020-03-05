@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "outDir": "../wwwroot",
+        "lib":  ["DOM", "ES2015"]
+    },
+    "files": [
+        "game.ts",
+        "babylon.d.ts",
+    ]
+}
