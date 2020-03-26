@@ -4,41 +4,44 @@ var Game = /** @class */ (function () {
         this._engine = new BABYLON.Engine(this._canvas, true);
     }
     Game.prototype.createScene = function () {
-        // Create a basic BJS Scene object.
-        this._scene = new BABYLON.Scene(this._engine);
-        // Create a FreeCamera, and set its position to (x:0, y:5, z:-10).
-        this._camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 5, -10), this._scene);
-        // Target the camera to scene origin.
+        var _this = this;
+        console.log('loading scene');
+        BABYLON.SceneLoader.Load("", "crokinole.babylon", this._engine, function (scene) { return _this.onSceneLoaded(scene); });
+    };
+    Game.prototype.onSceneLoaded = function (scene) {
+        var _this = this;
+        console.log('scene loaded');
+        this._scene = scene;
+        scene.executeWhenReady(function () { return _this.initScene(); });
+    };
+    Game.prototype.initScene = function () {
+        console.log('scene ready');
+        this.generateLights();
+        this.setupCamera();
+        this.doRender();
+    };
+    Game.prototype.generateLights = function () {
+        new BABYLON.SpotLight("left", new BABYLON.Vector3(0.5, 0.35, 0), new BABYLON.Vector3(-1, -1, 0), Math.PI / 2, 1, this._scene);
+        new BABYLON.SpotLight("right", new BABYLON.Vector3(-0.5, 0.35, 0), new BABYLON.Vector3(1, -1, 0), Math.PI / 2, 1, this._scene);
+        new BABYLON.SpotLight("top", new BABYLON.Vector3(0, 0.35, 0.5), new BABYLON.Vector3(0, -1, -1), Math.PI / 2, 1, this._scene);
+        new BABYLON.SpotLight("bottom", new BABYLON.Vector3(0, 0.35, -0.5), new BABYLON.Vector3(0, -1, 1), Math.PI / 2, 1, this._scene);
+    };
+    Game.prototype.setupCamera = function () {
+        this._camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 0, new BABYLON.Vector3(0, 0.5, 1.35), this._scene);
         this._camera.setTarget(BABYLON.Vector3.Zero());
-        // Attach the camera to the canvas.
-        this._camera.attachControl(this._canvas, false);
-        // Create a basic light, aiming 0,1,0 - meaning, to the sky.
-        this._light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), this._scene);
-        // Create a built-in "sphere" shape; with 16 segments and diameter of 2.
-        var sphere = BABYLON.MeshBuilder.CreateSphere('sphere', { segments: 16, diameter: 2 }, this._scene);
-        // Move the sphere upward 1/2 of its height.
-        sphere.position.y = 1;
-        // Create a built-in "ground" shape.
-        var ground = BABYLON.MeshBuilder.CreateGround('ground', { width: 6, height: 6, subdivisions: 2 }, this._scene);
+        this._camera.attachControl(this._canvas);
     };
     Game.prototype.doRender = function () {
         var _this = this;
-        // Run the render loop.
+        console.log('running render loop');
         this._engine.runRenderLoop(function () {
             _this._scene.render();
         });
-        // The canvas/window resize event handler.
+        console.log('adding resize listener');
         window.addEventListener('resize', function () {
             _this._engine.resize();
         });
     };
     return Game;
 }());
-window.addEventListener('DOMContentLoaded', function () {
-    // Create the game using the 'renderCanvas'.
-    var game = new Game('game');
-    // Create the scene.
-    game.createScene();
-    // Start render loop.
-    game.doRender();
-});
+window.addEventListener('DOMContentLoaded', function () { return new Game('game').createScene(); });
