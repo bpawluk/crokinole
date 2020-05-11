@@ -1,0 +1,23 @@
+{
+  "name": "crokinole",
+  "version": "1.0.0",
+  "description": "",
+  "main": "game.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babylonjs": "^4.1.0",
+    "inversify": "^5.0.1",
+    "reflect-metadata": "^0.1.13",
+    "strongly-typed-events": "^1.6.11",
+    "ts-loader": "^7.0.3",
+    "typescript": "^3.8.3",
+    "webpack": "^4.43.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.11"
+  }
+}

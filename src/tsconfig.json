@@ -1,10 +1,27 @@
 {
     "compilerOptions": {
+        "target": "ES6",
         "outDir": "../wwwroot",
-        "lib":  ["DOM", "ES2015"]
+        "lib": [
+            "es6",
+            "DOM"
+        ],
+        "types": [
+            "reflect-metadata"
+        ],
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
     },
-    "files": [
-        "game.ts",
-        "babylon.d.ts",
+    "include": [
+        "**/*",
+        "Game.ts",
+        "main.ts",
+        "babylon.d.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
     ]
 }
