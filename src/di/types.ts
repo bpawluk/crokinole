@@ -10,7 +10,12 @@ export const TYPES = {
     ILightsProvider: Symbol.for("ILightsProvider"),
     IPhysicsProvider: Symbol.for("IPhysicsProvider"),
 
+    // game logic
+    IGameController: Symbol.for("IGameController"),
+    IPlayerFactory: Symbol.for("IPlayerFactory"),
+
     // services
     ICameraManager: Symbol.for("ICameraManager"),
-    IComplexShapesBuilder: Symbol.for("IComplexShapesBuilder")
+    IComplexShapesBuilder: Symbol.for("IComplexShapesBuilder"),
+    IUserInput: Symbol.for("IUserInput")
 };
