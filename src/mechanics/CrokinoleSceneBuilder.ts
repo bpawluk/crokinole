@@ -15,6 +15,7 @@ export class CrokinoleSceneBuilder implements ISceneBuilder {
         if(!this._scene) {
             throw new Error("Scene is not built.");
         }
+        this._scene.pointerX
         return this._scene;
     }
 

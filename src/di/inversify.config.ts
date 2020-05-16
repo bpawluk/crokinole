@@ -18,6 +18,12 @@ import { IUserInput } from "../services/IUserInput";
 import { UserInput } from "../services/UserInput";
 import { IPlayerFactory } from "../game_logic/IPlayerFactory";
 import { PlayerFactory } from "../game_logic/PlayerFactory";
+import { IGuiProvider } from "../gui/IGuiProvider";
+import { GuiProvider } from "../gui/GuiProvider";
+import { IMakingMoveGui } from "../gui/IMakingMoveGui";
+import { MakingMoveGui } from "../gui/MakingMoveGui";
+import { IVectorMathHelper } from "../services/IVectorMathHelper";
+import { VectorMathHelper } from "../services/VectorMathHelper";
 
 const gameDependencyContainer = new Container();
 // app entry class
@@ -31,6 +37,10 @@ gameDependencyContainer.bind<ISceneBuilder>(TYPES.ISceneBuilder).to(CrokinoleSce
 gameDependencyContainer.bind<ILightsProvider>(TYPES.ILightsProvider).to(CrokinoleLightsProvider);
 gameDependencyContainer.bind<IPhysicsProvider>(TYPES.IPhysicsProvider).to(CrokinolePhysicsProvider);
 
+// gui
+gameDependencyContainer.bind<IGuiProvider>(TYPES.IGuiProvider).to(GuiProvider).inSingletonScope();
+gameDependencyContainer.bind<IMakingMoveGui>(TYPES.IMakingMoveGui).to(MakingMoveGui).inSingletonScope();
+
 // game logic
 gameDependencyContainer.bind<IGameController>(TYPES.IGameController).to(GameController);
 gameDependencyContainer.bind<IPlayerFactory>(TYPES.IPlayerFactory).to(PlayerFactory);
@@ -39,5 +49,6 @@ gameDependencyContainer.bind<IPlayerFactory>(TYPES.IPlayerFactory).to(PlayerFact
 gameDependencyContainer.bind<ICameraManager>(TYPES.ICameraManager).to(CameraManager).inSingletonScope();
 gameDependencyContainer.bind<IComplexShapesBuilder>(TYPES.IComplexShapesBuilder).to(ComplexShapesBuilder);
 gameDependencyContainer.bind<IUserInput>(TYPES.IUserInput).to(UserInput).inSingletonScope();
+gameDependencyContainer.bind<IVectorMathHelper>(TYPES.IVectorMathHelper).to(VectorMathHelper);
 
 export { gameDependencyContainer };
