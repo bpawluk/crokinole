@@ -46,18 +46,13 @@ export class LocalPlayer implements IPlayer {
         });
 
         var disc = this._createDisc();
+
         await this._choosePosition(disc);
         var contactPoint = await this._chooseContactPoint(disc);
         var direction = await this._chooseDirection(disc);
         var force = await this._chooseForce();
 
-        await new Promise<void>((resolve) => {
-            this._userInput.registerOneCallPointerListener(BABYLON.PointerEventTypes.POINTERDOWN, (pointerInfo: BABYLON.PointerInfo, eventState: BABYLON.EventState) => {
-                disc.physicsImpostor.applyImpulse(direction.multiplyByFloats(force, 0, force), contactPoint);
-                resolve();
-            });
-        });
-
+        disc.physicsImpostor.applyImpulse(direction.multiplyByFloats(force, 0, force), contactPoint);
         this._cameraManager.resetCamera();
     }
 
@@ -94,12 +89,13 @@ export class LocalPlayer implements IPlayer {
     }
 
     private async _chooseForce(): Promise<number> {
-        var force = 3;
-        var setForce = (newForce: number) => force = newForce;
+        var forceFactor = 1;
+        var maxForce = 3;
+        var setForce = (newForce: number) => forceFactor = newForce;
         await new Promise<void>((resolve) => {
             this._makingMoveGui.showChooseForceGui(setForce, () => resolve());
         });
-        return force;
+        return forceFactor * maxForce;
     }
 
     private _createDisc(): BABYLON.Mesh {

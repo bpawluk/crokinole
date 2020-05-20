@@ -26,6 +26,10 @@ export class MakingMoveGui implements IMakingMoveGui {
     private _directionIndicatorPointer: BABYLON.Mesh;
     private _rotationAxis: BABYLON.Vector3;
 
+    // chooseForce
+    private _progressBar: BABYLON.GUI.Control;
+    private _progressBarWidth = 400;
+
     init(scene: BABYLON.Scene): void {
         this._scene = scene;
         this._constructChoosePositionGui();
@@ -90,7 +94,7 @@ export class MakingMoveGui implements IMakingMoveGui {
         this._mousePicker.position.y = disc.position.y;
         this._directionIndicator.position = disc.position;
         this._rotateDirectionIndicator(defaultDirection);
-        this._setDirectionIndicatorVisibility(true);
+        //this._setDirectionIndicatorVisibility(true);
 
         var onPointerMove = (info, event) => {
             pickInfo = this._scene.pick(this._scene.pointerX, this._scene.pointerY, (mesh) => mesh == this._mousePicker);
@@ -114,13 +118,35 @@ export class MakingMoveGui implements IMakingMoveGui {
         this._directionIndicator.getChildMeshes().forEach((child) => child.isVisible = isVisible);
     }
 
-    private _rotateDirectionIndicator(direction: BABYLON.Vector3) {
-        var normalizedCurrentPosition = this._directionIndicatorPointer.position.subtract(this._directionIndicator.position);
-        this._directionIndicator.rotateAround(this._directionIndicator.position, this._rotationAxis, Math.atan2(BABYLON.Vector3.Cross(direction, normalizedCurrentPosition).length(), BABYLON.Vector3.Dot(direction, normalizedCurrentPosition)));
+    private _rotateDirectionIndicator(toPoint: BABYLON.Vector3) {
+        // console.log(this._directionIndicator.rotationQuaternion.toEulerAngles());
+        // console.log(this._normalizeAngle(Math.atan2(toPoint.x, toPoint.z)));
+        // console.log("______________");
+        // this._directionIndicator.rotate(this._rotationAxis, this._normalizeAngle(this._directionIndicator.rotation.y) - this._normalizeAngle(Math.atan2(toPoint.x, toPoint.z)), BABYLON.Space.WORLD);
+    }
+
+    private _normalizeAngle(angle: number) {
+        return angle < 0 ? 2 * Math.PI + angle : angle;
     }
 
     showChooseForceGui(setForce: Function, accept: Function): void {
-        accept();
+        var step = 0.02
+        var force = step;
+        this._progressBar.widthInPixels = force * this._progressBarWidth;
+        this._guiProvider.attachControl(this._progressBar);
+
+        var chooseForce = setInterval(() => {
+            if(force + step < 0 || force + step > 1) step = -step;
+            force += step;
+            this._progressBar.widthInPixels = force * this._progressBarWidth;
+        }, 10);
+
+        this._userInput.registerOneCallPointerListener(BABYLON.PointerEventTypes.POINTERDOWN, (info, event) => {
+            clearInterval(chooseForce);
+            this._guiProvider.detachControl(this._progressBar);
+            setForce(force);
+            accept();
+        });
     }
 
     private _constructChoosePositionGui() {
@@ -157,6 +183,7 @@ export class MakingMoveGui implements IMakingMoveGui {
         this._contactPointMarker = BABYLON.MeshBuilder.CreateSphere("red", { diameter: 0.05 }, this._scene);
         var redMat = new BABYLON.StandardMaterial("redmat", this._scene);
         redMat.diffuseColor = new BABYLON.Color3(0.4, 0.4, 0.4);
+        redMat.specularColor = BABYLON.Color3.Black();
         this._contactPointMarker.material = redMat;
         this._contactPointMarker.isVisible = false;
     }
@@ -175,9 +202,22 @@ export class MakingMoveGui implements IMakingMoveGui {
         this._setDirectionIndicatorVisibility(false);
 
         this._rotationAxis = new BABYLON.Vector3(0, 1, 0);
+
+        // var gizmoManager = new BABYLON.GizmoManager(this._scene);
+        // gizmoManager.positionGizmoEnabled = true;
+        // gizmoManager.rotationGizmoEnabled = true;
+        // gizmoManager.attachableMeshes = [this._directionIndicator];
+        // gizmoManager.attachToMesh(this._directionIndicator);
     }
 
     private _constructChooseForceGui(): void {
-
+        var progressBar = BABYLON.GUI.Button.CreateSimpleButton("progressBar", "");
+        progressBar.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
+        progressBar.height = "30px";
+        progressBar.widthInPixels = this._progressBarWidth;
+        progressBar.color = "white";
+        progressBar.background = "green";
+        progressBar.paddingBottomInPixels = 50;
+        this._progressBar = progressBar;
     }
 }
