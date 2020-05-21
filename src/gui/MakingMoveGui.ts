@@ -93,8 +93,8 @@ export class MakingMoveGui implements IMakingMoveGui {
         var pickInfo: BABYLON.PickingInfo;
         this._mousePicker.position.y = disc.position.y;
         this._directionIndicator.position = disc.position;
-        this._rotateDirectionIndicator(defaultDirection);
-        //this._setDirectionIndicatorVisibility(true);
+        this._rotateDirectionIndicator(BABYLON.Vector3.ZeroReadOnly.subtract(disc.position));
+        this._setDirectionIndicatorVisibility(true);
 
         var onPointerMove = (info, event) => {
             pickInfo = this._scene.pick(this._scene.pointerX, this._scene.pointerY, (mesh) => mesh == this._mousePicker);
@@ -118,11 +118,9 @@ export class MakingMoveGui implements IMakingMoveGui {
         this._directionIndicator.getChildMeshes().forEach((child) => child.isVisible = isVisible);
     }
 
+
     private _rotateDirectionIndicator(toPoint: BABYLON.Vector3) {
-        // console.log(this._directionIndicator.rotationQuaternion.toEulerAngles());
-        // console.log(this._normalizeAngle(Math.atan2(toPoint.x, toPoint.z)));
-        // console.log("______________");
-        // this._directionIndicator.rotate(this._rotationAxis, this._normalizeAngle(this._directionIndicator.rotation.y) - this._normalizeAngle(Math.atan2(toPoint.x, toPoint.z)), BABYLON.Space.WORLD);
+        this._directionIndicator.rotation.y = -Math.atan2(toPoint.z, toPoint.x);
     }
 
     private _normalizeAngle(angle: number) {

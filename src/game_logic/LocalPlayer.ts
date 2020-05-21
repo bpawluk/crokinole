@@ -3,7 +3,6 @@ import { IUserInput } from "../services/IUserInput";
 import { ISceneBuilder } from "../mechanics/ISceneBuilder";
 import { ICameraManager } from "../services/ICameraManager";
 import { IMakingMoveGui } from "../gui/IMakingMoveGui";
-import { IVectorMathHelper } from "../services/IVectorMathHelper";
 
 export class LocalPlayer implements IPlayer {
     // TODO: Remove 
