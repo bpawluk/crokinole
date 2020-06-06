@@ -2,7 +2,6 @@ import { injectable, inject } from "inversify";
 import { TYPES } from "../di/types";
 import { IMakingMoveGui } from "./IMakingMoveGui";
 import { IGuiProvider } from "./IGuiProvider";
-import { ISceneBuilder } from "../mechanics/ISceneBuilder";
 import { IUserInput } from "../services/IUserInput";
 
 @injectable()
@@ -24,7 +23,6 @@ export class MakingMoveGui implements IMakingMoveGui {
     private _mousePicker: BABYLON.Mesh;
     private _directionIndicator: BABYLON.Mesh;
     private _directionIndicatorPointer: BABYLON.Mesh;
-    private _rotationAxis: BABYLON.Vector3;
 
     // chooseForce
     private _progressBar: BABYLON.GUI.Control;
@@ -123,18 +121,16 @@ export class MakingMoveGui implements IMakingMoveGui {
         this._directionIndicator.rotation.y = -Math.atan2(toPoint.z, toPoint.x);
     }
 
-    private _normalizeAngle(angle: number) {
-        return angle < 0 ? 2 * Math.PI + angle : angle;
-    }
-
     showChooseForceGui(setForce: Function, accept: Function): void {
         var step = 0.02
-        var force = step;
+        var minForce = 0.05;
+        var maxForce = 1;
+        var force = minForce;
         this._progressBar.widthInPixels = force * this._progressBarWidth;
         this._guiProvider.attachControl(this._progressBar);
 
         var chooseForce = setInterval(() => {
-            if(force + step < 0 || force + step > 1) step = -step;
+            if(force + step < minForce || force + step > maxForce) step = -step;
             force += step;
             this._progressBar.widthInPixels = force * this._progressBarWidth;
         }, 10);
@@ -150,6 +146,8 @@ export class MakingMoveGui implements IMakingMoveGui {
     private _constructChoosePositionGui() {
         var panel = new BABYLON.GUI.Grid();
         panel.width = 0.5;
+        panel.height = 0.25;
+        panel.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
         panel.addColumnDefinition(0.3);
         panel.addColumnDefinition(10, true);
         panel.addColumnDefinition(0.3);
@@ -198,14 +196,6 @@ export class MakingMoveGui implements IMakingMoveGui {
         this._directionIndicator.addChild(ring);
         this._directionIndicator.addChild(this._directionIndicatorPointer);
         this._setDirectionIndicatorVisibility(false);
-
-        this._rotationAxis = new BABYLON.Vector3(0, 1, 0);
-
-        // var gizmoManager = new BABYLON.GizmoManager(this._scene);
-        // gizmoManager.positionGizmoEnabled = true;
-        // gizmoManager.rotationGizmoEnabled = true;
-        // gizmoManager.attachableMeshes = [this._directionIndicator];
-        // gizmoManager.attachToMesh(this._directionIndicator);
     }
 
     private _constructChooseForceGui(): void {

@@ -9,12 +9,13 @@ export class CrokinolePhysicsProvider implements IPhysicsProvider {
 
     enablePhysics(scene: BABYLON.Scene, renderImpostors: boolean): void {
         scene.enablePhysics(new BABYLON.Vector3(0, -9.81, 0), new BABYLON.CannonJSPlugin());
-        var options = { mass: 0, restitution: 0.6, friction: 0.005 };
+        var options = { mass: 0, restitution: 0, friction: 0 };
+        var pinsOptions = { mass: 0, restitution: 0.75, friction: 0 };
 
         var impostors = [];
 
         // field
-        var fieldFragments = this._complexShapesBuilder.buildRing(scene, 0.17, 3.35, 0.67, 32);
+        var fieldFragments = this._complexShapesBuilder.buildRing(scene, 0.17, 3.35, 0.67, 24);
         fieldFragments.forEach((fragment) => fragment.physicsImpostor = new BABYLON.PhysicsImpostor(fragment, BABYLON.PhysicsImpostor.BoxImpostor, options, scene));
         impostors = impostors.concat(fieldFragments);
 
@@ -62,7 +63,7 @@ export class CrokinolePhysicsProvider implements IPhysicsProvider {
         R = 1.025;
         height = 0.2
         for (var i = 0; i < 8; i++) {
-            var pin = BABYLON.MeshBuilder.CreateCylinder("pin", { diameter: 2 * r, height: height, tessellation: 32 }, scene);
+            var pin = BABYLON.MeshBuilder.CreateCylinder("pin", { diameter: 2 * r, height: height, tessellation: 16 }, scene);
 
             var angle = i * alpha;
 
@@ -70,7 +71,7 @@ export class CrokinolePhysicsProvider implements IPhysicsProvider {
             pin.position.y = 0.435;
             pin.position.z = Math.sin(angle) * R;
 
-            pin.physicsImpostor = new BABYLON.PhysicsImpostor(pin, BABYLON.PhysicsImpostor.CylinderImpostor, options, scene);
+            pin.physicsImpostor = new BABYLON.PhysicsImpostor(pin, BABYLON.PhysicsImpostor.CylinderImpostor, pinsOptions, scene);
             impostors.push(pin);
         }
 

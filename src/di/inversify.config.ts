@@ -24,6 +24,12 @@ import { IMakingMoveGui } from "../gui/IMakingMoveGui";
 import { MakingMoveGui } from "../gui/MakingMoveGui";
 import { IVectorMathHelper } from "../services/IVectorMathHelper";
 import { VectorMathHelper } from "../services/VectorMathHelper";
+import { IGameStateGui } from "../gui/IGameStateGui";
+import { GameStateGui } from "../gui/GameStateGui";
+import { IMenuGui } from "../gui/IMenuGui";
+import { MenuGui } from "../gui/MenuGui";
+import { IPawnProvider } from "../game_logic/IPawnProvider";
+import { PawnProvider } from "../game_logic/PawnProvider";
 
 const gameDependencyContainer = new Container();
 // app entry class
@@ -40,10 +46,13 @@ gameDependencyContainer.bind<IPhysicsProvider>(TYPES.IPhysicsProvider).to(Crokin
 // gui
 gameDependencyContainer.bind<IGuiProvider>(TYPES.IGuiProvider).to(GuiProvider).inSingletonScope();
 gameDependencyContainer.bind<IMakingMoveGui>(TYPES.IMakingMoveGui).to(MakingMoveGui).inSingletonScope();
+gameDependencyContainer.bind<IGameStateGui>(TYPES.IGameStateGui).to(GameStateGui).inSingletonScope();
+gameDependencyContainer.bind<IMenuGui>(TYPES.IMenuGui).to(MenuGui).inSingletonScope();
 
 // game logic
 gameDependencyContainer.bind<IGameController>(TYPES.IGameController).to(GameController);
 gameDependencyContainer.bind<IPlayerFactory>(TYPES.IPlayerFactory).to(PlayerFactory);
+gameDependencyContainer.bind<IPawnProvider>(TYPES.IPawnProvider).to(PawnProvider);
 
 // services 
 gameDependencyContainer.bind<ICameraManager>(TYPES.ICameraManager).to(CameraManager).inSingletonScope();

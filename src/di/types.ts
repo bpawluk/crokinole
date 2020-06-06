@@ -13,10 +13,13 @@ export const TYPES = {
     // gui
     IGuiProvider: Symbol.for("IGuiProvider"),
     IMakingMoveGui: Symbol.for("IMakingMoveGui"),
+    IGameStateGui: Symbol.for("IGameStateGui"),
+    IMenuGui: Symbol.for("IMenuGui"),
 
     // game logic
     IGameController: Symbol.for("IGameController"),
     IPlayerFactory: Symbol.for("IPlayerFactory"),
+    IPawnProvider: Symbol.for("IPawnProvider"),
 
     // services
     ICameraManager: Symbol.for("ICameraManager"),
