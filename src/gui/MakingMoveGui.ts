@@ -3,6 +3,7 @@ import { TYPES } from "../di/types";
 import { IMakingMoveGui } from "./IMakingMoveGui";
 import { IGuiProvider } from "./IGuiProvider";
 import { IUserInput } from "../services/IUserInput";
+import { ISceneBuilder } from "../mechanics/ISceneBuilder";
 
 @injectable()
 export class MakingMoveGui implements IMakingMoveGui {
@@ -130,7 +131,7 @@ export class MakingMoveGui implements IMakingMoveGui {
         this._guiProvider.attachControl(this._progressBar);
 
         var chooseForce = setInterval(() => {
-            if(force + step < minForce || force + step > maxForce) step = -step;
+            if (force + step < minForce || force + step > maxForce) step = -step;
             force += step;
             this._progressBar.widthInPixels = force * this._progressBarWidth;
         }, 10);
@@ -177,10 +178,7 @@ export class MakingMoveGui implements IMakingMoveGui {
 
     private _constructChooseContactPointGui(): void {
         this._contactPointMarker = BABYLON.MeshBuilder.CreateSphere("red", { diameter: 0.05 }, this._scene);
-        var redMat = new BABYLON.StandardMaterial("redmat", this._scene);
-        redMat.diffuseColor = new BABYLON.Color3(0.4, 0.4, 0.4);
-        redMat.specularColor = BABYLON.Color3.Black();
-        this._contactPointMarker.material = redMat;
+        this._contactPointMarker.material = this._scene.getMaterialByID("Green");
         this._contactPointMarker.isVisible = false;
     }
 
@@ -188,13 +186,29 @@ export class MakingMoveGui implements IMakingMoveGui {
         this._mousePicker = BABYLON.MeshBuilder.CreateGround("ground", { width: 100, height: 100 }, this._scene);
         this._mousePicker.isVisible = false;
 
-        var ringDiamater = 0.4
+        var ringDiamater = 0.45
         var ring = BABYLON.MeshBuilder.CreateCylinder("ring", { height: .005, diameter: ringDiamater, tessellation: 32 }, this._scene);
-        this._directionIndicatorPointer = BABYLON.MeshBuilder.CreateBox("pointer", { width: 0.4, depth: 0.02, height: .005 }, this._scene);
+        ring.material = this._scene.getMaterialByID("Green");
+
+        var pointerLine = BABYLON.MeshBuilder.CreateBox("pointer", { width: 0.5, depth: 0.08, height: .005 }, this._scene);
+        pointerLine.material = this._scene.getMaterialByID("Green");
+
+        var corners = [new BABYLON.Vector2(0, 0.1), new BABYLON.Vector2(-0.1, -0.1), new BABYLON.Vector2(0, -0.05), new BABYLON.Vector2(0.1, -0.1)];
+        var builder = new BABYLON.PolygonMeshBuilder("polytri", corners, this._scene);
+        var pointerTip = builder.build(null, 0.005);
+        pointerTip.rotate(new BABYLON.Vector3(0,1,0), Math.PI/2);
+        pointerTip.position.x = 0.25;
+        pointerTip.material = this._scene.getMaterialByID("Green");
+
+        this._directionIndicatorPointer = new BABYLON.Mesh("directionIndicatorPointer", this._scene);
+        this._directionIndicatorPointer.addChild(pointerLine);
+        this._directionIndicatorPointer.addChild(pointerTip);
         this._directionIndicatorPointer.position = ring.position.add(new BABYLON.Vector3(ringDiamater / 2, 0, 0));
+
         this._directionIndicator = new BABYLON.Mesh("directionIndicator", this._scene);
         this._directionIndicator.addChild(ring);
         this._directionIndicator.addChild(this._directionIndicatorPointer);
+
         this._setDirectionIndicatorVisibility(false);
     }
 

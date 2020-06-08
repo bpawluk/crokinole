@@ -5,6 +5,7 @@ import { IPhysicsProvider } from "./mechanics/IPhysicsProvider";
 import { IGameController } from "./game_logic/IGameController";
 import { IGuiProvider } from "./gui/IGuiProvider";
 import { IMakingMoveGui } from "./gui/IMakingMoveGui";
+import { IMenuGui } from "./gui/IMenuGui";
 
 @injectable()
 export class Game implements Game {
@@ -17,6 +18,7 @@ export class Game implements Game {
     @inject(TYPES.IGameController) private _gameController: IGameController;
     @inject(TYPES.IGuiProvider) private _guiProvider: IGuiProvider;
     @inject(TYPES.IMakingMoveGui) private _makingMoveGui: IMakingMoveGui;
+    @inject(TYPES.IMenuGui) private _menuGui: IMenuGui;
 
     constructor(@inject(TYPES.canvas_name) canvasElement: string) {
         this._canvas = document.getElementById(canvasElement) as HTMLCanvasElement;
@@ -30,7 +32,7 @@ export class Game implements Game {
         this._guiProvider.init(this._scene);
         this._makingMoveGui.init(this._scene);
         this._doRender();
-        this._gameController.startGame();
+        this._menuGui.showMainMenu(() => this._gameController.startGame());
     }
 
     private _doRender(): void {

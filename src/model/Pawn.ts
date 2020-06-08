@@ -11,7 +11,7 @@ export class Pawn {
         return this._mesh;
     }
 
-    public makeMove(contactPoint: BABYLON.Vector3, direction: BABYLON.Vector3, force: number) {
+    public makeMove(contactPoint: BABYLON.Vector3, direction: BABYLON.Vector3, force: number): void {
         this._impostor.applyImpulse(direction.multiplyByFloats(force, 0, force), contactPoint);
     }
 

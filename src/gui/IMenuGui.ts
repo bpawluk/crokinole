@@ -1,5 +1,5 @@
 export interface IMenuGui {
-    showMainMenu(): void;
+    showMainMenu(startLocal: Function): void;
     showPauseMenu(): void;
     showRoundEnded(): void;
     showGameEnded(): void;
