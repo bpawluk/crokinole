@@ -78,7 +78,7 @@ export class LocalPlayer implements IPlayer {
 
     private async _chooseForce(): Promise<number> {
         var forceFactor = 1;
-        var maxForce = 3.5;
+        var maxForce = 4;
         var setForce = (newFactor: number) => forceFactor = newFactor;
         await new Promise<void>((resolve) => {
             this._makingMoveGui.showChooseForceGui(setForce, () => resolve());

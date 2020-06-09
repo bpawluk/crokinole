@@ -52,7 +52,7 @@ gameDependencyContainer.bind<IMenuGui>(TYPES.IMenuGui).to(MenuGui).inSingletonSc
 // game logic
 gameDependencyContainer.bind<IGameController>(TYPES.IGameController).to(GameController);
 gameDependencyContainer.bind<IPlayerFactory>(TYPES.IPlayerFactory).to(PlayerFactory);
-gameDependencyContainer.bind<IPawnProvider>(TYPES.IPawnProvider).to(PawnProvider);
+gameDependencyContainer.bind<IPawnProvider>(TYPES.IPawnProvider).to(PawnProvider).inSingletonScope();
 
 // services 
 gameDependencyContainer.bind<ICameraManager>(TYPES.ICameraManager).to(CameraManager).inSingletonScope();

@@ -1,6 +1,5 @@
-import { injectable, inject } from "inversify";
+import { injectable } from "inversify";
 import { IGuiProvider } from "./IGuiProvider";
-import { TYPES } from "../di/types";
 
 @injectable()
 export class GuiProvider implements IGuiProvider {
@@ -16,5 +15,9 @@ export class GuiProvider implements IGuiProvider {
 
     detachControl(control: BABYLON.GUI.Control): void {
         this._guiCanvas.removeControl(control);
+    }
+
+    clear(): void {
+        this._guiCanvas.getDescendants(true).forEach((control) => this.detachControl(control));
     }
 }

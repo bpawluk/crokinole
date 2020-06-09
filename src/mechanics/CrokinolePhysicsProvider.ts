@@ -15,7 +15,7 @@ export class CrokinolePhysicsProvider implements IPhysicsProvider {
         var impostors = [];
 
         // field
-        var fieldFragments = this._complexShapesBuilder.buildRing(scene, 0.17, 3.35, 0.67, 24);
+        var fieldFragments = this._complexShapesBuilder.buildRing(scene, 0.17, 3.35, 0.67, 20);
         fieldFragments.forEach((fragment) => fragment.physicsImpostor = new BABYLON.PhysicsImpostor(fragment, BABYLON.PhysicsImpostor.BoxImpostor, options, scene));
         impostors = impostors.concat(fieldFragments);
 
@@ -63,7 +63,7 @@ export class CrokinolePhysicsProvider implements IPhysicsProvider {
         R = 1.025;
         height = 0.2
         for (var i = 0; i < 8; i++) {
-            var pin = BABYLON.MeshBuilder.CreateCylinder("pin", { diameter: 2 * r, height: height, tessellation: 16 }, scene);
+            var pin = BABYLON.MeshBuilder.CreateCylinder("pin", { diameter: 2 * r, height: height, tessellation: 12 }, scene);
 
             var angle = i * alpha;
 

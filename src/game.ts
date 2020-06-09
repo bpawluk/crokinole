@@ -6,6 +6,7 @@ import { IGameController } from "./game_logic/IGameController";
 import { IGuiProvider } from "./gui/IGuiProvider";
 import { IMakingMoveGui } from "./gui/IMakingMoveGui";
 import { IMenuGui } from "./gui/IMenuGui";
+import { IPawnProvider } from "./game_logic/IPawnProvider";
 
 @injectable()
 export class Game implements Game {
@@ -16,6 +17,7 @@ export class Game implements Game {
     @inject(TYPES.ISceneBuilder) private _sceneBuilder: ISceneBuilder;
     @inject(TYPES.IPhysicsProvider) private _physicsProvider: IPhysicsProvider;
     @inject(TYPES.IGameController) private _gameController: IGameController;
+    @inject(TYPES.IPawnProvider) private _pawnProvider: IPawnProvider;
     @inject(TYPES.IGuiProvider) private _guiProvider: IGuiProvider;
     @inject(TYPES.IMakingMoveGui) private _makingMoveGui: IMakingMoveGui;
     @inject(TYPES.IMenuGui) private _menuGui: IMenuGui;
@@ -29,6 +31,7 @@ export class Game implements Game {
         await this._sceneBuilder.buildScene(this._canvas, this._engine);
         this._scene = this._sceneBuilder.scene;
         this._physicsProvider.enablePhysics(this._scene, false);
+        this._pawnProvider.init(this._scene);
         this._guiProvider.init(this._scene);
         this._makingMoveGui.init(this._scene);
         this._doRender();
