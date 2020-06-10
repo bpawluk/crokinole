@@ -1,6 +1,9 @@
 import { IPlayer } from "../game_logic/IPlayer";
 import { Pawn } from "./Pawn";
 import { Score } from "./Score";
+import { inject } from "inversify";
+import { TYPES } from "../di/types";
+import { IPawnPositionHelper } from "../game_logic/IPawnPositionHelper";
 
 export class GameState {
     private _SHOTS_PER_ROUND: number = 12;
@@ -10,7 +13,9 @@ export class GameState {
     private _scores: Map<IPlayer, Score>;
     private _nextPlayerIndex: number;
 
-    constructor(players: Array<IPlayer>) {
+    private _pawnPositionHelper: IPawnPositionHelper;
+
+    constructor(players: Array<IPlayer>, pawnPositionHelper: IPawnPositionHelper) {
         this._players = players;
         this._nextPlayerIndex = 0;
         this._pawns = new Map<IPlayer, Array<Pawn>>();
@@ -19,14 +24,17 @@ export class GameState {
             this._pawns.set(player, []);
             this._scores.set(player, new Score(this._SHOTS_PER_ROUND));
         });
+        this._pawnPositionHelper = pawnPositionHelper;
     }
 
     getPlayers(): Array<IPlayer> {
         return this._players;
     }
 
-    getPawns(): Map<IPlayer, Array<Pawn>> {
-        return this._pawns;
+    getPawns(): Array<Pawn> {
+        var pawns: Array<Pawn> = [];
+        this._players.forEach(player => pawns = pawns.concat(this._pawns.get(player)));
+        return pawns;
     }
 
     getScores(): Map<IPlayer, Score> {
@@ -37,6 +45,10 @@ export class GameState {
         return this._players[this._nextPlayerIndex];
     }
 
+    isFreeShot(): boolean {
+        return this._pawns.get(this._getOtherPlayer(this.nextPlayer())).filter(pawn => pawn.isInPlay).length == 0;
+    }
+
     playerMoved(pawn: Pawn): void {
         this._pawns.get(this._players[this._nextPlayerIndex]).push(pawn);
         this._nextPlayerIndex = this._nextPlayerIndex + 1 >= this._players.length ? 0 : this._nextPlayerIndex + 1;
@@ -45,11 +57,16 @@ export class GameState {
     calculatePoints(): void {
         this._players.forEach(player => {
             var score = this._scores.get(player);
+            score.points = 0;
+            this._pawns.get(player).forEach(pawn => {
+                if(pawn.isIn20Bowl) {
+                    score.points += 20;
+                } else if(pawn.isInPlay) {
+                    score.points += this._pawnPositionHelper.getPoints(pawn.getMesh().position);
+                }
+            });
             score.movesLeft = this._SHOTS_PER_ROUND - this._pawns.get(player).length;
         });
-
-        var score = this._scores.get(this._players[1]);
-        score.points += 20;
     }
 
     newRound() {

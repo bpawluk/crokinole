@@ -30,6 +30,8 @@ import { IMenuGui } from "../gui/IMenuGui";
 import { MenuGui } from "../gui/MenuGui";
 import { IPawnProvider } from "../game_logic/IPawnProvider";
 import { PawnProvider } from "../game_logic/PawnProvider";
+import { IPawnPositionHelper } from "../game_logic/IPawnPositionHelper";
+import { PawnPositionHelper } from "../game_logic/PawnPositionHelper";
 
 const gameDependencyContainer = new Container();
 // app entry class
@@ -53,6 +55,7 @@ gameDependencyContainer.bind<IMenuGui>(TYPES.IMenuGui).to(MenuGui).inSingletonSc
 gameDependencyContainer.bind<IGameController>(TYPES.IGameController).to(GameController);
 gameDependencyContainer.bind<IPlayerFactory>(TYPES.IPlayerFactory).to(PlayerFactory);
 gameDependencyContainer.bind<IPawnProvider>(TYPES.IPawnProvider).to(PawnProvider).inSingletonScope();
+gameDependencyContainer.bind<IPawnPositionHelper>(TYPES.IPawnPositionHelper).to(PawnPositionHelper);
 
 // services 
 gameDependencyContainer.bind<ICameraManager>(TYPES.ICameraManager).to(CameraManager).inSingletonScope();

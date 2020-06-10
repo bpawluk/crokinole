@@ -20,6 +20,7 @@ export const TYPES = {
     IGameController: Symbol.for("IGameController"),
     IPlayerFactory: Symbol.for("IPlayerFactory"),
     IPawnProvider: Symbol.for("IPawnProvider"),
+    IPawnPositionHelper: Symbol.for("IPawnPositionHelper"),
 
     // services
     ICameraManager: Symbol.for("ICameraManager"),

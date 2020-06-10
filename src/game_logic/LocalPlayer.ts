@@ -3,6 +3,7 @@ import { IPlayer } from "./IPlayer";
 import { ICameraManager } from "../services/ICameraManager";
 import { IMakingMoveGui } from "../gui/IMakingMoveGui";
 import { IPawnProvider } from "./IPawnProvider";
+import { IPawnPositionHelper } from "./IPawnPositionHelper";
 
 export class LocalPlayer implements IPlayer {
     private _cameraManager: ICameraManager;
@@ -45,11 +46,30 @@ export class LocalPlayer implements IPlayer {
 
     private async _choosePosition(disc: BABYLON.Mesh): Promise<void> {
         this._followDiscWithCamera(disc);
-        var moveLeft = () => this._moveDiscByRadians(disc, this._movingDiscRotationRadians);
-        var moveRight = () => this._moveDiscByRadians(disc, -this._movingDiscRotationRadians);
+        var initialPosition = disc.position;
+        var moveLeft = () => {
+            var currentPosition = disc.position;
+            if (this._normalize(Math.atan2(currentPosition.z, currentPosition.x) - Math.atan2(initialPosition.z, initialPosition.x)) > - Math.PI / 4) {
+                console.log(this._normalize(Math.atan2(currentPosition.z, currentPosition.x) - Math.atan2(initialPosition.z, initialPosition.x)));
+                this._moveDiscByRadians(disc, this._movingDiscRotationRadians)
+            }
+        };
+        var moveRight = () => {
+            var currentPosition = disc.position;
+            if (this._normalize(Math.atan2(currentPosition.z, currentPosition.x) - Math.atan2(initialPosition.z, initialPosition.x)) < Math.PI / 4) {
+                console.log(this._normalize(Math.atan2(currentPosition.z, currentPosition.x) - Math.atan2(initialPosition.z, initialPosition.x)));
+                this._moveDiscByRadians(disc, -this._movingDiscRotationRadians);
+            }
+        };
         await new Promise<void>((resolve) => {
             this._makingMoveGui.showChoosePositionGui(moveLeft, moveRight, () => resolve());
         });
+    }
+
+    private _normalize(angle: number): number {
+        if (angle > Math.PI) angle -= 2 * Math.PI;
+        else if (angle < -Math.PI) angle += 2 * Math.PI;
+        return angle;
     }
 
     private _moveDiscByRadians(disc: BABYLON.Mesh, radians: number): void {

@@ -115,7 +115,7 @@ export class MenuGui implements IMenuGui {
 
         var online = BABYLON.GUI.Button.CreateSimpleButton("button", "Online Multiplayer");
         online.color = "white";
-        online.background = "green";
+        online.background = "gray";
         online.isEnabled = false;
         online.paddingBottom = "15%";
         online.paddingLeft = "30%";
@@ -133,10 +133,10 @@ export class MenuGui implements IMenuGui {
         var howToPlay = BABYLON.GUI.Button.CreateSimpleButton("button", "How to play");
         howToPlay.color = "white";
         howToPlay.background = "green";
-        howToPlay.isEnabled = false;
         howToPlay.paddingBottom = "15%";
         howToPlay.paddingLeft = "30%";
         howToPlay.paddingRight = "30%";
+        howToPlay.onPointerUpObservable.add(() => window.open("https://crokinole.guru/game-rules/",'_blank'));
         panel.addControl(howToPlay, 4, 0);
 
         this._mainMenuGui = panel;

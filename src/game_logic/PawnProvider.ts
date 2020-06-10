@@ -1,7 +1,8 @@
 import { IPawnProvider } from "./IPawnProvider";
-import { injectable } from "inversify";
-import { ISceneBuilder } from "../mechanics/ISceneBuilder";
+import { injectable, inject } from "inversify";
 import { Pawn } from "../model/Pawn";
+import { TYPES } from "../di/types";
+import { IPawnPositionHelper } from "./IPawnPositionHelper";
 
 @injectable()
 export class PawnProvider implements IPawnProvider {
@@ -9,6 +10,8 @@ export class PawnProvider implements IPawnProvider {
 
     private _frictionCoef: number = 0.02; 
     private _materials: Map<string, BABYLON.Material>;
+
+    @inject(TYPES.IPawnPositionHelper) _pawnPositionHelper: IPawnPositionHelper;
 
     init(scene: BABYLON.Scene): void {
         this._scene = scene;
@@ -18,9 +21,8 @@ export class PawnProvider implements IPawnProvider {
     }
     
     createPawn(color: string): Pawn {
-        var disc = BABYLON.MeshBuilder.CreateCylinder("disc", { height: .1, diameter: 0.32, tessellation: 20 }, this._scene);
-        disc.position.y = .385;
-        disc.position.x = 3.19;
+        var disc = BABYLON.MeshBuilder.CreateCylinder("disc", { height: .12, diameter: 0.32, tessellation: 20 }, this._scene);
+        disc.position = this._pawnPositionHelper.getStartingPosition(color);
         disc.material = this._materials.get(color);
         disc.physicsImpostor = new BABYLON.PhysicsImpostor(disc, BABYLON.PhysicsImpostor.CylinderImpostor, { mass: 1, restitution: 0.75, friction: 0 }, this._scene);
         disc.physicsImpostor.registerAfterPhysicsStep(impostor => {
@@ -29,6 +31,6 @@ export class PawnProvider implements IPawnProvider {
             impostor.setLinearVelocity(currentVelocity.multiplyByFloats(1 - this._frictionCoef, 1, 1 - this._frictionCoef));
             impostor.setAngularVelocity(currentAngularVelocity.multiplyByFloats(1 - this._frictionCoef, 1 - this._frictionCoef, 1 - this._frictionCoef))
         });
-        return new Pawn(disc);
+        return new Pawn(disc, color, this._pawnPositionHelper);
     }
 }
