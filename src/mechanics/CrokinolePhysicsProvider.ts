@@ -25,7 +25,7 @@ export class CrokinolePhysicsProvider implements IPhysicsProvider {
         impostors.push(holeFloor);
 
         // bands floor
-        var outsideRing = BABYLON.MeshBuilder.CreateCylinder("outerField", { height: 0.6, diameter: 8.4, tessellation: 14 }, scene);
+        var outsideRing = BABYLON.MeshBuilder.CreateCylinder("outerField", { height: 0.6, diameter: 8.6, tessellation: 14 }, scene);
         outsideRing.position.y = -0.15;
         outsideRing.rotation.y = Math.PI / 14;
         outsideRing.physicsImpostor = new BABYLON.PhysicsImpostor(outsideRing, BABYLON.PhysicsImpostor.CylinderImpostor, options, scene);
@@ -37,7 +37,7 @@ export class CrokinolePhysicsProvider implements IPhysicsProvider {
         var R = 4.05;
         var middleR = (r + R) / 2;
         var width = R - r;
-        var length = 2 * r * Math.sin(alpha / 2);
+        var length = 2 * r * Math.sin(alpha / 2) + 0.1;
         var height = 0.75;
         for (var i = 0; i < 14; i++) {
             var pin = BABYLON.MeshBuilder.CreateBox("band", { size: 1 }, scene);
