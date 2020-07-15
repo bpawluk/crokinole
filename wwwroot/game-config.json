@@ -1,0 +1,47 @@
+{
+    "camera": {},
+    "materials": [
+        {
+            "name": "",
+            "diffuse": {
+                "color": [
+                    0,
+                    0,
+                    0
+                ],
+                "texture": ""
+            },
+            "specular": {
+                "color": [
+                    0,
+                    0,
+                    0
+                ],
+                "texture": ""
+            },
+            "emissive": {
+                "color": [
+                    0,
+                    0,
+                    0
+                ],
+                "texture": ""
+            },
+            "ambient": {
+                "color": [
+                    0,
+                    0,
+                    0
+                ],
+                "texture": ""
+            }
+        },
+        {}
+    ],
+    "lights": {},
+    "firstPlayer": "Cyan",
+    "firstPlayerMaterial": {},
+    "secondPlayer": "Purple",
+    "secondPlayerMaterial": {},
+    "applyTextures": {}
+}

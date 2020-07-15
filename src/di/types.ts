@@ -2,19 +2,10 @@ export const TYPES = {
     // app entry class
     Game: Symbol.for("Game"),
 
-    // constants 
+    // config 
     canvas_name: Symbol.for("canvas_name"),
-
-    // game mechanics
-    ISceneBuilder: Symbol.for("ISceneBuilder"),
-    ILightsProvider: Symbol.for("ILightsProvider"),
-    IPhysicsProvider: Symbol.for("IPhysicsProvider"),
-
-    // gui
-    IGuiProvider: Symbol.for("IGuiProvider"),
-    IMakingMoveGui: Symbol.for("IMakingMoveGui"),
-    IGameStateGui: Symbol.for("IGameStateGui"),
-    IMenuGui: Symbol.for("IMenuGui"),
+    config_path: Symbol.for("config_path"),
+    IConfigProvider: Symbol.for("IConfigProvider"),
 
     // game logic
     IGameController: Symbol.for("IGameController"),
@@ -22,9 +13,19 @@ export const TYPES = {
     IPawnProvider: Symbol.for("IPawnProvider"),
     IPawnPositionHelper: Symbol.for("IPawnPositionHelper"),
 
-    // services
-    ICameraManager: Symbol.for("ICameraManager"),
+    // gui
+    IGuiProvider: Symbol.for("IGuiProvider"),
+    IMakingMoveGui: Symbol.for("IMakingMoveGui"),
+    IGameStateGui: Symbol.for("IGameStateGui"),
+    IMenuGui: Symbol.for("IMenuGui"),
+
+    // helpers
     IComplexShapesBuilder: Symbol.for("IComplexShapesBuilder"),
-    IUserInput: Symbol.for("IUserInput"),
-    IVectorMathHelper: Symbol.for("IVectorMathHelper")
+    IPointerEventsManager: Symbol.for("IPointerEventsManager"),
+
+    // scene
+    ICameraManager: Symbol.for("ICameraManager"),
+    ISceneBuilder: Symbol.for("ISceneBuilder"),
+    ILightsProvider: Symbol.for("ILightsProvider"),
+    IPhysicsProvider: Symbol.for("IPhysicsProvider")
 };

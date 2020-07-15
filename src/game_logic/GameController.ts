@@ -1,12 +1,12 @@
 import { inject, injectable, id } from "inversify";
 import { TYPES } from "../di/types";
-import { IGameController } from "./IGameController";
-import { IPlayerFactory } from "./IPlayerFactory";
+import { IGameController } from "./interfaces/IGameController";
+import { IPlayerFactory } from "./interfaces/IPlayerFactory";
 import { GameState } from "../model/GameState";
-import { IMenuGui } from "../gui/IMenuGui";
-import { IGameStateGui } from "../gui/IGameStateGui";
-import { IPawnPositionHelper } from "./IPawnPositionHelper";
-import { ISceneBuilder } from "../mechanics/ISceneBuilder";
+import { IMenuGui } from "../gui/interfaces/IMenuGui";
+import { IGameStateGui } from "../gui/interfaces/IGameStateGui";
+import { IPawnPositionHelper } from "./interfaces/IPawnPositionHelper";
+import { ISceneBuilder } from "../scene/interfaces/ISceneBuilder";
 import { Pawn } from "../model/Pawn";
 
 @injectable()

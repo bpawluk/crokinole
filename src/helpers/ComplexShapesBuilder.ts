@@ -1,5 +1,5 @@
 import { injectable } from "inversify";
-import { IComplexShapesBuilder } from "./IComplexShapesBuilder";
+import { IComplexShapesBuilder } from "./interfaces/IComplexShapesBuilder";
 
 @injectable()
 export class ComplexShapesBuilder implements IComplexShapesBuilder {

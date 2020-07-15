@@ -1,7 +1,7 @@
 import { injectable, inject } from "inversify";
 import { TYPES } from "../di/types";
-import { IGameStateGui } from "./IGameStateGui";
-import { IGuiProvider } from "./IGuiProvider";
+import { IGameStateGui } from "./interfaces/IGameStateGui";
+import { IGuiProvider } from "./interfaces/IGuiProvider";
 import { Score } from "../model/Score";
 
 @injectable()

@@ -1,8 +1,8 @@
-import { IPawnProvider } from "./IPawnProvider";
+import { IPawnProvider } from "./interfaces/IPawnProvider";
 import { injectable, inject } from "inversify";
 import { Pawn } from "../model/Pawn";
 import { TYPES } from "../di/types";
-import { IPawnPositionHelper } from "./IPawnPositionHelper";
+import { IPawnPositionHelper } from "./interfaces/IPawnPositionHelper";
 
 @injectable()
 export class PawnProvider implements IPawnProvider {
@@ -16,8 +16,8 @@ export class PawnProvider implements IPawnProvider {
     init(scene: BABYLON.Scene): void {
         this._scene = scene;
         this._materials = new Map();
-        this._materials.set("Cyan", this._scene.getMaterialByID("Cyan"));
-        this._materials.set("Purple", this._scene.getMaterialByID("Purple"));
+        this._materials.set("Cyan", new BABYLON.StandardMaterial("a", this._scene));
+        this._materials.set("Purple", new BABYLON.StandardMaterial("b", this._scene));
     }
     
     createPawn(color: string): Pawn {

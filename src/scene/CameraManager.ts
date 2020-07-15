@@ -1,8 +1,8 @@
 import { injectable } from "inversify";
-import { ICameraManager } from "./ICameraManager";
+import { ICameraManager } from "./interfaces/ICameraManager";
 
 @injectable()
-export class CameraManager implements ICameraManager {
+export class CrokinoleCameraManager implements ICameraManager {
     private _camera: BABYLON.ArcRotateCamera;
     private _defaultPosition: BABYLON.Vector3;
     private _defaultTarget: BABYLON.Vector3;

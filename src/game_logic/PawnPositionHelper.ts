@@ -1,4 +1,4 @@
-import { IPawnPositionHelper } from "./IPawnPositionHelper";
+import { IPawnPositionHelper } from "./interfaces/IPawnPositionHelper";
 import { injectable } from "inversify";
 
 @injectable()

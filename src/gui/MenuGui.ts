@@ -1,7 +1,7 @@
-import { IMenuGui } from "./IMenuGui";
+import { IMenuGui } from "./interfaces/IMenuGui";
 import { injectable, inject } from "inversify";
 import { TYPES } from "../di/types";
-import { IGuiProvider } from "./IGuiProvider";
+import { IGuiProvider } from "./interfaces/IGuiProvider";
 
 @injectable()
 export class MenuGui implements IMenuGui {

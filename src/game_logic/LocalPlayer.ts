@@ -1,9 +1,9 @@
 import { Pawn } from "../model/Pawn";
-import { IPlayer } from "./IPlayer";
-import { ICameraManager } from "../services/ICameraManager";
-import { IMakingMoveGui } from "../gui/IMakingMoveGui";
-import { IPawnProvider } from "./IPawnProvider";
-import { IPawnPositionHelper } from "./IPawnPositionHelper";
+import { IPlayer } from "./interfaces/IPlayer";
+import { ICameraManager } from "../scene/interfaces/ICameraManager";
+import { IMakingMoveGui } from "../gui/interfaces/IMakingMoveGui";
+import { IPawnProvider } from "./interfaces/IPawnProvider";
+import { IPawnPositionHelper } from "./interfaces/IPawnPositionHelper";
 
 export class LocalPlayer implements IPlayer {
     private _cameraManager: ICameraManager;
@@ -50,14 +50,12 @@ export class LocalPlayer implements IPlayer {
         var moveLeft = () => {
             var currentPosition = disc.position;
             if (this._normalize(Math.atan2(currentPosition.z, currentPosition.x) - Math.atan2(initialPosition.z, initialPosition.x)) > - Math.PI / 4) {
-                console.log(this._normalize(Math.atan2(currentPosition.z, currentPosition.x) - Math.atan2(initialPosition.z, initialPosition.x)));
                 this._moveDiscByRadians(disc, this._movingDiscRotationRadians)
             }
         };
         var moveRight = () => {
             var currentPosition = disc.position;
             if (this._normalize(Math.atan2(currentPosition.z, currentPosition.x) - Math.atan2(initialPosition.z, initialPosition.x)) < Math.PI / 4) {
-                console.log(this._normalize(Math.atan2(currentPosition.z, currentPosition.x) - Math.atan2(initialPosition.z, initialPosition.x)));
                 this._moveDiscByRadians(disc, -this._movingDiscRotationRadians);
             }
         };

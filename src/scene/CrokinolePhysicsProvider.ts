@@ -1,7 +1,7 @@
 import { injectable, inject } from "inversify";
-import { IPhysicsProvider } from "./IPhysicsProvider";
+import { IPhysicsProvider } from "./interfaces/IPhysicsProvider";
 import { TYPES } from "../di/types";
-import { IComplexShapesBuilder } from "../services/IComplexShapesBuilder";
+import { IComplexShapesBuilder } from "../helpers/interfaces/IComplexShapesBuilder";
 
 @injectable()
 export class CrokinolePhysicsProvider implements IPhysicsProvider {

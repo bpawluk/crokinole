@@ -1,14 +1,14 @@
 import { injectable, inject } from "inversify";
 import { TYPES } from "../di/types";
-import { IMakingMoveGui } from "./IMakingMoveGui";
-import { IGuiProvider } from "./IGuiProvider";
-import { IUserInput } from "../services/IUserInput";
-import { ISceneBuilder } from "../mechanics/ISceneBuilder";
+import { IMakingMoveGui } from "./interfaces/IMakingMoveGui";
+import { IGuiProvider } from "./interfaces/IGuiProvider";
+import { IPointerEventsManager } from "../helpers/interfaces/IPointerEventsManager";
+import { ISceneBuilder } from "../scene/interfaces/ISceneBuilder";
 
 @injectable()
 export class MakingMoveGui implements IMakingMoveGui {
     @inject(TYPES.IGuiProvider) private _guiProvider: IGuiProvider;
-    @inject(TYPES.IUserInput) private _userInput: IUserInput;
+    @inject(TYPES.IPointerEventsManager) private _userInput: IPointerEventsManager;
     private _scene: BABYLON.Scene;
 
     // choosePositionGui
@@ -79,9 +79,9 @@ export class MakingMoveGui implements IMakingMoveGui {
             }
         };
 
-        this._userInput.registerPointerListener(BABYLON.PointerEventTypes.POINTERMOVE, onPointerMove);
-        this._userInput.registerOneCallPointerListener(BABYLON.PointerEventTypes.POINTERDOWN, (info, event) => {
-            this._userInput.unregisterPointerListener(BABYLON.PointerEventTypes.POINTERMOVE, onPointerMove);
+        this._userInput.registerListener(BABYLON.PointerEventTypes.POINTERMOVE, onPointerMove);
+        this._userInput.registerOneCallListener(BABYLON.PointerEventTypes.POINTERDOWN, (info, event) => {
+            this._userInput.unregisterListener(BABYLON.PointerEventTypes.POINTERMOVE, onPointerMove);
             this._contactPointMarker.isVisible = false;
             this._contactPointMarker.position = BABYLON.Vector3.ZeroReadOnly;
             accept();
@@ -104,9 +104,9 @@ export class MakingMoveGui implements IMakingMoveGui {
             }
         };
 
-        this._userInput.registerPointerListener(BABYLON.PointerEventTypes.POINTERMOVE, onPointerMove);
-        this._userInput.registerOneCallPointerListener(BABYLON.PointerEventTypes.POINTERDOWN, (info, event) => {
-            this._userInput.unregisterPointerListener(BABYLON.PointerEventTypes.POINTERMOVE, onPointerMove);
+        this._userInput.registerListener(BABYLON.PointerEventTypes.POINTERMOVE, onPointerMove);
+        this._userInput.registerOneCallListener(BABYLON.PointerEventTypes.POINTERDOWN, (info, event) => {
+            this._userInput.unregisterListener(BABYLON.PointerEventTypes.POINTERMOVE, onPointerMove);
             this._setDirectionIndicatorVisibility(false);
             accept();
         });
@@ -136,7 +136,7 @@ export class MakingMoveGui implements IMakingMoveGui {
             this._progressBar.widthInPixels = force * this._progressBarWidth;
         }, 10);
 
-        this._userInput.registerOneCallPointerListener(BABYLON.PointerEventTypes.POINTERDOWN, (info, event) => {
+        this._userInput.registerOneCallListener(BABYLON.PointerEventTypes.POINTERDOWN, (info, event) => {
             clearInterval(chooseForce);
             this._guiProvider.detachControl(this._progressBar);
             setForce(force);

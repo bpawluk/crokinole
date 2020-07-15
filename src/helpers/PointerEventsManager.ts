@@ -1,10 +1,10 @@
 import { inject, injectable } from "inversify";
 import { TYPES } from "../di/types";
-import { IUserInput } from "./IUserInput";
-import { ISceneBuilder } from "../mechanics/ISceneBuilder";
+import { IPointerEventsManager } from "./interfaces/IPointerEventsManager";
+import { ISceneBuilder } from "../scene/interfaces/ISceneBuilder";
 
 @injectable()
-export class UserInput implements IUserInput {
+export class PointerEventsManager implements IPointerEventsManager {
     private _isInit;
     private _pointerActionObservables: Map<number, BABYLON.Observable<BABYLON.PointerInfo>>
     @inject(TYPES.ISceneBuilder) private _sceneProvider: ISceneBuilder;
@@ -14,19 +14,19 @@ export class UserInput implements IUserInput {
         this._pointerActionObservables = new Map<number, BABYLON.Observable<BABYLON.PointerInfo>>();
     }
 
-    registerOneCallPointerListener(eventType: number, callback: (pointerInfo: BABYLON.PointerInfo, eventState: BABYLON.EventState) => void) {
+    registerOneCallListener(eventType: number, callback: (pointerInfo: BABYLON.PointerInfo, eventState: BABYLON.EventState) => void) {
         this._lazyInit();
         this._lazyCreatePointerActionObservable(eventType);
         this._pointerActionObservables.get(eventType).addOnce(callback);
     }
 
-    registerPointerListener(eventType: number, callback: (pointerInfo: BABYLON.PointerInfo, eventState: BABYLON.EventState) => void): void {
+    registerListener(eventType: number, callback: (pointerInfo: BABYLON.PointerInfo, eventState: BABYLON.EventState) => void): void {
         this._lazyInit();
         this._lazyCreatePointerActionObservable(eventType);
         this._pointerActionObservables.get(eventType).add(callback);
     }
 
-    unregisterPointerListener(eventType: number, callback: (pointerInfo: BABYLON.PointerInfo, eventState: BABYLON.EventState) => void): void {
+    unregisterListener(eventType: number, callback: (pointerInfo: BABYLON.PointerInfo, eventState: BABYLON.EventState) => void): void {
         this._lazyInit();
         this._lazyCreatePointerActionObservable(eventType);
         this._pointerActionObservables.get(eventType).removeCallback(callback);

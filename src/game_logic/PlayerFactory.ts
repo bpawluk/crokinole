@@ -1,12 +1,12 @@
 import { inject, injectable } from "inversify";
 import { TYPES } from "../di/types";
-import { IPlayerFactory } from "./IPlayerFactory";
-import { IPlayer } from "./IPlayer";
+import { IPlayerFactory } from "./interfaces/IPlayerFactory";
+import { IPlayer } from "./interfaces/IPlayer";
 import { LocalPlayer } from "./LocalPlayer";
-import { ICameraManager } from "../services/ICameraManager";
-import { IMakingMoveGui } from "../gui/IMakingMoveGui";
-import { IPawnProvider } from "./IPawnProvider";
-import { IPawnPositionHelper } from "./IPawnPositionHelper";
+import { ICameraManager } from "../scene/interfaces/ICameraManager";
+import { IMakingMoveGui } from "../gui/interfaces/IMakingMoveGui";
+import { IPawnProvider } from "./interfaces/IPawnProvider";
+import { IPawnPositionHelper } from "./interfaces/IPawnPositionHelper";
 
 @injectable()
 export class PlayerFactory implements IPlayerFactory {

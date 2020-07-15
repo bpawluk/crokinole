@@ -1,4 +1,4 @@
-import { Pawn } from "../model/Pawn";
+import { Pawn } from "../../model/Pawn";
 
 export interface IPlayer {
     readonly color: string;

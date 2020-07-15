@@ -1,9 +1,9 @@
-import { IPlayer } from "../game_logic/IPlayer";
+import { IPlayer } from "../game_logic/interfaces/IPlayer";
 import { Pawn } from "./Pawn";
 import { Score } from "./Score";
 import { inject } from "inversify";
 import { TYPES } from "../di/types";
-import { IPawnPositionHelper } from "../game_logic/IPawnPositionHelper";
+import { IPawnPositionHelper } from "../game_logic/interfaces/IPawnPositionHelper";
 
 export class GameState {
     private _SHOTS_PER_ROUND: number = 12;

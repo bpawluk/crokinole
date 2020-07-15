@@ -1,4 +1,4 @@
-import { Score } from "../model/Score";
+import { Score } from "../../model/Score";
 
 export interface IGameStateGui {
     showGameState(): void;

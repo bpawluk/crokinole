@@ -1,4 +1,4 @@
-import { IPawnPositionHelper } from "../game_logic/IPawnPositionHelper";
+import { IPawnPositionHelper } from "../game_logic/interfaces/IPawnPositionHelper";
 
 export class Pawn {
     private _MIN_VELOCITY = 0.01;

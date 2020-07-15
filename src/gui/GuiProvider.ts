@@ -1,5 +1,5 @@
 import { injectable } from "inversify";
-import { IGuiProvider } from "./IGuiProvider";
+import { IGuiProvider } from "./interfaces/IGuiProvider";
 
 @injectable()
 export class GuiProvider implements IGuiProvider {
