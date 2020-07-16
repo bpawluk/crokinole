@@ -1,26 +1,22 @@
 import { IConfigProvider } from "./IConfigProvider";
 import { injectable, inject } from "inversify";
 import { TYPES } from "../di/types";
+import { RetriablePromise } from "../utils/RetriablePromise";
 
 @injectable()
 export class OnlineConfigProvider implements IConfigProvider {
     private _config: object;
-    @inject(TYPES.config_path) _path: string; 
+    @inject(TYPES.config_path) _path: string;
 
     async init(): Promise<void> {
-        return new Promise<void>((resolve, reject) => {
+        return new RetriablePromise<void>((resolve, reject) => {
             this.makeRequest()
                 .then(config => {
-                    console.log(config);
                     this._config = config;
                     resolve();
                 })
-                .catch(async reason => {
-                    console.log(reason)
-                    await this.init();
-                    // TODO: add delay and provide universal solution
-                });
-        });
+                .catch(reason => reject(reason));
+        }).retry(3, 1000).catch(error => console.log("Config could not be fetched from provided path."));
     }
 
     getSetting(key: string): any {
