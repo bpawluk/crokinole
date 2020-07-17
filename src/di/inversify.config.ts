@@ -32,6 +32,8 @@ import { IPawnPositionHelper } from "../game_logic/interfaces/IPawnPositionHelpe
 import { PawnPositionHelper } from "../game_logic/PawnPositionHelper";
 import { IConfigProvider } from "../config/IConfigProvider";
 import { OnlineConfigProvider } from "../config/OnlineConfigProvider";
+import { IHttpRequestSender } from "../helpers/interfaces/IHttpRequestSender";
+import { HttpRequestSender } from "../helpers/HttpRequestSender";
 
 const gameDependencyContainer = new Container();
 
@@ -57,6 +59,7 @@ gameDependencyContainer.bind<IMenuGui>(TYPES.IMenuGui).to(MenuGui).inSingletonSc
 
 // helpers 
 gameDependencyContainer.bind<IComplexShapesBuilder>(TYPES.IComplexShapesBuilder).to(ComplexShapesBuilder);
+gameDependencyContainer.bind<IHttpRequestSender>(TYPES.IHttpRequestSender).to(HttpRequestSender);
 gameDependencyContainer.bind<IPointerEventsManager>(TYPES.IPointerEventsManager).to(PointerEventsManager).inSingletonScope();
 
 // scene

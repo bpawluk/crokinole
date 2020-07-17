@@ -21,6 +21,7 @@ export const TYPES = {
 
     // helpers
     IComplexShapesBuilder: Symbol.for("IComplexShapesBuilder"),
+    IHttpRequestSender: Symbol.for("IHttpRequestSender"),
     IPointerEventsManager: Symbol.for("IPointerEventsManager"),
 
     // scene
