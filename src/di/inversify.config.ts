@@ -34,6 +34,8 @@ import { IConfigProvider } from "../config/IConfigProvider";
 import { OnlineConfigProvider } from "../config/OnlineConfigProvider";
 import { IHttpRequestSender } from "../helpers/interfaces/IHttpRequestSender";
 import { HttpRequestSender } from "../helpers/HttpRequestSender";
+import { ICacheManager } from "../helpers/interfaces/ICacheManager";
+import { MemoryCacheManager } from "../helpers/MemoryCacheManager";
 
 const gameDependencyContainer = new Container();
 
@@ -58,6 +60,7 @@ gameDependencyContainer.bind<IGameStateGui>(TYPES.IGameStateGui).to(GameStateGui
 gameDependencyContainer.bind<IMenuGui>(TYPES.IMenuGui).to(MenuGui).inSingletonScope();
 
 // helpers 
+gameDependencyContainer.bind<ICacheManager>(TYPES.ICacheManager).to(MemoryCacheManager).inSingletonScope();
 gameDependencyContainer.bind<IComplexShapesBuilder>(TYPES.IComplexShapesBuilder).to(ComplexShapesBuilder);
 gameDependencyContainer.bind<IHttpRequestSender>(TYPES.IHttpRequestSender).to(HttpRequestSender);
 gameDependencyContainer.bind<IPointerEventsManager>(TYPES.IPointerEventsManager).to(PointerEventsManager).inSingletonScope();

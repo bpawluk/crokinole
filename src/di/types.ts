@@ -20,6 +20,7 @@ export const TYPES = {
     IMenuGui: Symbol.for("IMenuGui"),
 
     // helpers
+    ICacheManager: Symbol.for("ICacheManager"),
     IComplexShapesBuilder: Symbol.for("IComplexShapesBuilder"),
     IHttpRequestSender: Symbol.for("IHttpRequestSender"),
     IPointerEventsManager: Symbol.for("IPointerEventsManager"),

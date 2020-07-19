@@ -11,7 +11,7 @@ export class OnlineConfigProvider implements IConfigProvider {
 
     async init(): Promise<void> {
         try {
-            this._config = await this._httpRequestSender.get(this._path);
+            this._config = JSON.parse(await this._httpRequestSender.get(this._path));
             console.log(this._config);
         } catch (error) {
             console.log("Config could not be fetched from provided path.")

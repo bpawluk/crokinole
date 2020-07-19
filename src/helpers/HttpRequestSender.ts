@@ -7,11 +7,11 @@ export class HttpRequestSender implements IHttpRequestSender {
     private _numberOfRetries: number = 3;
     private _retriesIntervalInMs: number = 2000;
 
-    async get(path: string): Promise<object> {
+    async get(path: string): Promise<any> {
         return await this._makeRequest('GET', path).retry(this._numberOfRetries, this._retriesIntervalInMs);
     }
 
-    private _makeRequest(method: string, path: string): RetriablePromise<object> {
+    private _makeRequest(method: string, path: string): RetriablePromise<any> {
         return new RetriablePromise<object>((resolve, reject) => {
             var request = new XMLHttpRequest();
             request.open(method, path, true);
