@@ -2,14 +2,14 @@
     "camera": {},
     "materials": [
         {
-            "name": "",
+            "name": "bandsTxt",
             "diffuse": {
                 "color": [
-                    0,
-                    0,
-                    0
+                    1,
+                    0.5,
+                    0.5
                 ],
-                "texture": ""
+                "texture": "Wood034_4K_Color.jpg"
             },
             "specular": {
                 "color": [

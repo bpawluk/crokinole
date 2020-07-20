@@ -29,5 +29,6 @@ export const TYPES = {
     ICameraManager: Symbol.for("ICameraManager"),
     ISceneBuilder: Symbol.for("ISceneBuilder"),
     ILightsProvider: Symbol.for("ILightsProvider"),
-    IPhysicsProvider: Symbol.for("IPhysicsProvider")
+    IPhysicsProvider: Symbol.for("IPhysicsProvider"),
+    ITexturePainter: Symbol.for("ITexturePainter")
 };

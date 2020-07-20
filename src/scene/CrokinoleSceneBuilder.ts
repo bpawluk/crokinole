@@ -3,6 +3,7 @@ import { TYPES } from "../di/types";
 import { ISceneBuilder } from "./interfaces/ISceneBuilder";
 import { ILightsProvider } from "./interfaces/ILightsProvider";
 import { ICameraManager } from "./interfaces/ICameraManager";
+import { ITexturePainter } from "./interfaces/ITexturesPainter";
 
 @injectable()
 export class CrokinoleSceneBuilder implements ISceneBuilder {
@@ -10,9 +11,10 @@ export class CrokinoleSceneBuilder implements ISceneBuilder {
 
     @inject(TYPES.ILightsProvider) private _lightsProvider: ILightsProvider;
     @inject(TYPES.ICameraManager) private _cameraManager: ICameraManager;
+    @inject(TYPES.ITexturePainter) private _texturePainter: ITexturePainter;
 
     get scene(): BABYLON.Scene {
-        if(!this._scene) {
+        if (!this._scene) {
             throw new Error("Scene is not built.");
         }
         return this._scene;
@@ -21,14 +23,10 @@ export class CrokinoleSceneBuilder implements ISceneBuilder {
     async buildScene(canvas: HTMLCanvasElement, engine: BABYLON.Engine): Promise<void> {
         return new Promise((resolve) => BABYLON.SceneLoader.Load("", "crokinole.babylon", engine, (scene) => scene.executeWhenReady(() => {
             this._scene = scene;
-            this._applyTextures(this._scene);
+            this._texturePainter.paint(this._scene);
             this._lightsProvider.provideLights(this._scene);
             this._cameraManager.setupCamera(canvas, this._scene);
             resolve(null);
         })));
-    }
-
-    private _applyTextures(scene: BABYLON.Scene): void {
-        // TODO: implement and move to different class
     }
 }

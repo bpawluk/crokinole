@@ -31,6 +31,7 @@ export class Game implements Game {
     }
 
     async start(): Promise<void> {
+        await this._configProvider.init();
         await this._sceneBuilder.buildScene(this._canvas, this._engine);
         this._scene = this._sceneBuilder.scene;
         this._physicsProvider.enablePhysics(this._scene, false);
@@ -43,7 +44,6 @@ export class Game implements Game {
         this._pawnProvider.init(this._scene);
         this._guiProvider.init(this._scene);
         this._makingMoveGui.init(this._scene);
-        await this._configProvider.init();
     }
 
     private _doRender(): void {
