@@ -38,6 +38,8 @@ import { ICacheManager } from "../helpers/interfaces/ICacheManager";
 import { MemoryCacheManager } from "../helpers/MemoryCacheManager";
 import { ITexturePainter } from "../scene/interfaces/ITexturesPainter";
 import { TexturePainter } from "../scene/TexturePainter";
+import { ILoadingScreen } from "babylonjs";
+import { CrokinoleLoadingScreen } from "../scene/CrokinoleLoadingScreen";
 
 const gameDependencyContainer = new Container();
 
@@ -70,6 +72,7 @@ gameDependencyContainer.bind<IPointerEventsManager>(TYPES.IPointerEventsManager)
 // scene
 gameDependencyContainer.bind<ICameraManager>(TYPES.ICameraManager).to(CrokinoleCameraManager).inSingletonScope();
 gameDependencyContainer.bind<ILightsProvider>(TYPES.ILightsProvider).to(CrokinoleLightsProvider);
+gameDependencyContainer.bind<ILoadingScreen>(TYPES.ILoadingScreen).to(CrokinoleLoadingScreen);
 gameDependencyContainer.bind<IPhysicsProvider>(TYPES.IPhysicsProvider).to(CrokinolePhysicsProvider);
 gameDependencyContainer.bind<ISceneBuilder>(TYPES.ISceneBuilder).to(CrokinoleSceneBuilder).inSingletonScope();
 gameDependencyContainer.bind<ITexturePainter>(TYPES.ITexturePainter).to(TexturePainter);

@@ -13,28 +13,17 @@
     <script src="https://code.jquery.com/pep/0.4.1/pep.js"></script>
     <!-- Link to earcut - a dependency of Babylon Polygon Builder -->
     <script src="https://unpkg.com/earcut@2.1.1/dist/earcut.min.js"></script>
-
     <!-- Cannon.js physics engine -->
     <script src="cannon.js"></script>
     <!-- Game logic -->
     <script src="main.js"></script>
-    <style>
-    html, body {
-        overflow: hidden;
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
-
-    #game {
-        width: 100%;
-        height: 100%;
-        touch-action: none;
-    }
-</style>
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+    <div id="loadingScreen">
+        <div class="lds-hourglass"></div>
+    </div>
     <canvas id="game"></canvas>
 </body>
 </html>

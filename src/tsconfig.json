@@ -4,7 +4,7 @@
         "outDir": "../wwwroot",
         "lib": [
             "es6",
-            "DOM"
+            "dom"
         ],
         "types": [
             "reflect-metadata"
