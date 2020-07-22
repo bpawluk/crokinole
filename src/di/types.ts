@@ -30,6 +30,7 @@ export const TYPES = {
     ISceneBuilder: Symbol.for("ISceneBuilder"),
     ILightsProvider: Symbol.for("ILightsProvider"),
     ILoadingScreen: Symbol.for("ILoadingScreen"),
+    IMaterialsProvider: Symbol.for("IMaterialsProvider"),
     IPhysicsProvider: Symbol.for("IPhysicsProvider"),
     ITexturePainter: Symbol.for("ITexturePainter")
 };

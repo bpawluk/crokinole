@@ -40,6 +40,8 @@ import { ITexturePainter } from "../scene/interfaces/ITexturesPainter";
 import { TexturePainter } from "../scene/TexturePainter";
 import { ILoadingScreen } from "babylonjs";
 import { CrokinoleLoadingScreen } from "../scene/CrokinoleLoadingScreen";
+import { IMaterialsProvider } from "../scene/interfaces/IMaterialsProvider";
+import { StandardMaterialsProvider } from "../scene/StandardMaterialsProvider";
 
 const gameDependencyContainer = new Container();
 
@@ -73,6 +75,7 @@ gameDependencyContainer.bind<IPointerEventsManager>(TYPES.IPointerEventsManager)
 gameDependencyContainer.bind<ICameraManager>(TYPES.ICameraManager).to(CrokinoleCameraManager).inSingletonScope();
 gameDependencyContainer.bind<ILightsProvider>(TYPES.ILightsProvider).to(CrokinoleLightsProvider);
 gameDependencyContainer.bind<ILoadingScreen>(TYPES.ILoadingScreen).to(CrokinoleLoadingScreen);
+gameDependencyContainer.bind<IMaterialsProvider>(TYPES.IMaterialsProvider).to(StandardMaterialsProvider);
 gameDependencyContainer.bind<IPhysicsProvider>(TYPES.IPhysicsProvider).to(CrokinolePhysicsProvider);
 gameDependencyContainer.bind<ISceneBuilder>(TYPES.ISceneBuilder).to(CrokinoleSceneBuilder).inSingletonScope();
 gameDependencyContainer.bind<ITexturePainter>(TYPES.ITexturePainter).to(TexturePainter);

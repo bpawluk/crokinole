@@ -35,13 +35,17 @@
                 ],
                 "texture": ""
             }
-        },
-        {}
+        }
     ],
     "lights": {},
     "firstPlayer": "Cyan",
     "firstPlayerMaterial": {},
     "secondPlayer": "Purple",
     "secondPlayerMaterial": {},
-    "applyTextures": {}
+    "applyTextures": [
+        {
+            "target": "Bands",
+            "material": "bandsTxt"
+        }
+    ]
 }
