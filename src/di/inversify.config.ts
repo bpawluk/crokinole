@@ -5,7 +5,7 @@ import { Game } from "../Game";
 import { IComplexShapesBuilder } from "../helpers/interfaces/IComplexShapesBuilder";
 import { ComplexShapesBuilder } from "../helpers/ComplexShapesBuilder";
 import { ISceneBuilder } from "../scene/interfaces/ISceneBuilder";
-import { CrokinoleSceneBuilder } from "../scene/CrokinoleSceneBuilder";
+import { SceneBuilder } from "../scene/SceneBuilder";
 import { IPhysicsProvider } from "../scene/interfaces/IPhysicsProvider";
 import { CrokinolePhysicsProvider } from "../scene/CrokinolePhysicsProvider";
 import { ILightsProvider } from "../scene/interfaces/ILightsProvider";
@@ -42,6 +42,8 @@ import { ILoadingScreen } from "babylonjs";
 import { CrokinoleLoadingScreen } from "../scene/CrokinoleLoadingScreen";
 import { IMaterialsProvider } from "../scene/interfaces/IMaterialsProvider";
 import { StandardMaterialsProvider } from "../scene/StandardMaterialsProvider";
+import { ISkyboxBuilder } from "../scene/interfaces/ISkyboxBuilder";
+import { SkyboxBuilder } from "../scene/SkyboxBuilder";
 
 const gameDependencyContainer = new Container();
 
@@ -77,7 +79,8 @@ gameDependencyContainer.bind<ILightsProvider>(TYPES.ILightsProvider).to(Crokinol
 gameDependencyContainer.bind<ILoadingScreen>(TYPES.ILoadingScreen).to(CrokinoleLoadingScreen);
 gameDependencyContainer.bind<IMaterialsProvider>(TYPES.IMaterialsProvider).to(StandardMaterialsProvider);
 gameDependencyContainer.bind<IPhysicsProvider>(TYPES.IPhysicsProvider).to(CrokinolePhysicsProvider);
-gameDependencyContainer.bind<ISceneBuilder>(TYPES.ISceneBuilder).to(CrokinoleSceneBuilder).inSingletonScope();
+gameDependencyContainer.bind<ISceneBuilder>(TYPES.ISceneBuilder).to(SceneBuilder).inSingletonScope();
+gameDependencyContainer.bind<ISkyboxBuilder>(TYPES.ISkyboxBuilder).to(SkyboxBuilder);
 gameDependencyContainer.bind<ITexturePainter>(TYPES.ITexturePainter).to(TexturePainter);
 
 export { gameDependencyContainer };

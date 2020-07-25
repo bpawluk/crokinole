@@ -45,6 +45,8 @@ export class StandardMaterialsProvider implements IMaterialsProvider {
                 }
                 if (config[type].texture) {
                     material[type + "Texture"] = new BABYLON.Texture(config[type].texture, this._scene);
+                    material[type + "Texture"].uScale = config[type].uScale;
+                    material[type + "Texture"].vScale = config[type].vScale;
                 }
             }
         })

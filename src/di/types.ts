@@ -32,5 +32,6 @@ export const TYPES = {
     ILoadingScreen: Symbol.for("ILoadingScreen"),
     IMaterialsProvider: Symbol.for("IMaterialsProvider"),
     IPhysicsProvider: Symbol.for("IPhysicsProvider"),
+    ISkyboxBuilder: Symbol.for("ISkyboxBuilder"),
     ITexturePainter: Symbol.for("ITexturePainter")
 };

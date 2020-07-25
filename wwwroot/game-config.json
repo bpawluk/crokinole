@@ -1,51 +1,74 @@
 {
-    "camera": {},
     "materials": [
         {
-            "name": "bandsTxt",
+            "name": "lightWood",
+            "diffuse": {
+                "texture": "light-wood.jpg",
+                "uScale": 5,
+                "vScale": 5
+            }
+        },
+        {
+            "name": "darkWood",
+            "diffuse": {
+                "texture": "light-wood.jpg",
+                "uScale": 5,
+                "vScale": 5
+            }
+        },
+        {
+            "name": "cyan",
             "diffuse": {
                 "color": [
-                    1,
-                    0.5,
-                    0.5
-                ],
-                "texture": "Wood034_4K_Color.jpg"
-            },
-            "specular": {
+                    0.30,
+                    0.65,
+                    0.65
+                ]
+            }
+        },
+        {
+            "name": "purple",
+            "diffuse": {
                 "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "texture": ""
-            },
-            "emissive": {
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "texture": ""
-            },
-            "ambient": {
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "texture": ""
+                    0.40,
+                    0.20,
+                    0.45
+                ]
             }
         }
     ],
-    "lights": {},
-    "firstPlayer": "Cyan",
-    "firstPlayerMaterial": {},
-    "secondPlayer": "Purple",
-    "secondPlayerMaterial": {},
     "applyTextures": [
         {
             "target": "Bands",
-            "material": "bandsTxt"
+            "material": "darkWood"
+        },
+        {
+            "target": "Field",
+            "material": "lightWood"
+        }
+    ],
+    "skybox": {
+        "path": "skybox/face",
+        "extensions": [
+            "_px.png",
+            "_py.png",
+            "_pz.png",
+            "_nx.png",
+            "_ny.png",
+            "_nz.png"
+        ],
+        "size": 10000
+    },
+    "camera": {},
+    "lights": {},
+    "players": [
+        {
+            "name": "Cyan",
+            "material": "cyan"
+        },
+        {
+            "name": "Purple",
+            "material": "purple"
         }
     ]
 }

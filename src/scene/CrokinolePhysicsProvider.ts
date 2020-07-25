@@ -75,7 +75,6 @@ export class CrokinolePhysicsProvider implements IPhysicsProvider {
             impostors.push(pin);
         }
 
-
         var impostorMaterial = impostorMaterial = new BABYLON.StandardMaterial("fieldMat", scene);
         impostorMaterial.diffuseColor = new BABYLON.Color3(.2, 1, .2);
 
