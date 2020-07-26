@@ -14,6 +14,7 @@ export class Game implements Game {
     private _canvas: HTMLCanvasElement;
     private _engine: BABYLON.Engine;
     private _scene: BABYLON.Scene;
+    private _fps: HTMLElement; // TODO: Remove
     
     @inject(TYPES.ILoadingScreen) private _loadingScreen: BABYLON.ILoadingScreen;
     @inject(TYPES.ISceneBuilder) private _sceneBuilder: ISceneBuilder;
@@ -33,6 +34,8 @@ export class Game implements Game {
     async start(): Promise<void> {
         this._engine.loadingScreen = this._loadingScreen;
         this._loadingScreen.displayLoadingUI();
+
+        this._fps = document.getElementById("fps"); // TODO: Remove
 
         await this._configProvider.init();
 
@@ -58,6 +61,7 @@ export class Game implements Game {
     private _doRender(): void {
         this._engine.runRenderLoop(() => {
             this._scene.render();
+            this._fps.innerHTML = this._engine.getFps().toFixed() + " fps"; // TODO: Remove
         });
 
         window.addEventListener('resize', () => {

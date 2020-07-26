@@ -18,7 +18,6 @@
         },
         {
             "name": "cyan",
-            "backFaceCulling": false,
             "emissive": {
                 "color": [
                     0.30,
@@ -36,55 +35,6 @@
                     0.45
                 ]
             }
-        },
-        {
-            "name": "darkBrown",
-            "emissive": {
-                "color": [
-                    0.06, 
-                    0.04, 
-                    0.02
-                ]
-            }, 
-            "diffuse": {
-                "color": [
-                    0, 
-                    0, 
-                    0
-                ]
-            },
-            "specular": {
-                "color": [
-                    0, 
-                    0, 
-                    0
-                ]
-            }
-        },
-        {
-            "name": "boxMaterial",
-            "backFaceCulling": false,
-            "emissive": {
-                "color": [
-                    0.12, 
-                    0.08, 
-                    0.04
-                ]
-            }, 
-            "diffuse": {
-                "color": [
-                    0, 
-                    0, 
-                    0
-                ]
-            },
-            "specular": {
-                "color": [
-                    0, 
-                    0, 
-                    0
-                ]
-            }
         }
     ],
     "applyTextures": [
@@ -95,16 +45,20 @@
         {
             "target": "Field",
             "material": "lightWood"
-        },
-        {
-            "target": "Ground",
-            "material": "darkBrown"
-        },
-        {
-            "target": "Box",
-            "material": "boxMaterial"
         }
     ],
+    "skybox": {
+        "path": "skybox/face",
+        "extensions": [
+            "_px.svg",
+            "_py.svg",
+            "_pz.svg",
+            "_nx.svg",
+            "_ny.svg",
+            "_nz.svg"
+        ],
+        "size": 100
+    },
     "camera": {},
     "lights": {},
     "players": [
