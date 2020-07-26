@@ -4,7 +4,6 @@ import { ISceneBuilder } from "./interfaces/ISceneBuilder";
 import { ILightsProvider } from "./interfaces/ILightsProvider";
 import { ICameraManager } from "./interfaces/ICameraManager";
 import { ITexturePainter } from "./interfaces/ITexturesPainter";
-import { ISkyboxBuilder } from "./interfaces/ISkyboxBuilder";
 
 @injectable()
 export class SceneBuilder implements ISceneBuilder {
@@ -12,7 +11,6 @@ export class SceneBuilder implements ISceneBuilder {
 
     @inject(TYPES.ILightsProvider) private _lightsProvider: ILightsProvider;
     @inject(TYPES.ICameraManager) private _cameraManager: ICameraManager;
-    @inject(TYPES.ISkyboxBuilder) private _skyboxBuilder: ISkyboxBuilder;
     @inject(TYPES.ITexturePainter) private _texturePainter: ITexturePainter;
 
     get scene(): BABYLON.Scene {
@@ -26,7 +24,6 @@ export class SceneBuilder implements ISceneBuilder {
         return new Promise((resolve) => BABYLON.SceneLoader.Load("", "crokinole.babylon", engine, (scene) => scene.executeWhenReady(() => {
             this._scene = scene;
             this._texturePainter.paint(this._scene);
-            this._skyboxBuilder.createSkybox(this._scene);
             this._lightsProvider.provideLights(this._scene);
             this._cameraManager.setupCamera(canvas, this._scene);
             resolve(null);

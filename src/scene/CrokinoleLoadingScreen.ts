@@ -1,8 +1,7 @@
-import { ILoadingScreen } from "babylonjs";
 import { injectable } from "inversify";
 
 @injectable()
-export class CrokinoleLoadingScreen implements ILoadingScreen {
+export class CrokinoleLoadingScreen implements BABYLON.ILoadingScreen {
     loadingUIBackgroundColor: string;
     loadingUIText: string;
 

@@ -4,21 +4,22 @@
             "name": "lightWood",
             "diffuse": {
                 "texture": "light-wood.jpg",
-                "uScale": 5,
-                "vScale": 5
+                "uScale": 7,
+                "vScale": 7
             }
         },
         {
             "name": "darkWood",
             "diffuse": {
-                "texture": "light-wood.jpg",
-                "uScale": 5,
-                "vScale": 5
+                "texture": "dark-wood.jpg",
+                "uScale": 7,
+                "vScale": 7
             }
         },
         {
             "name": "cyan",
-            "diffuse": {
+            "backFaceCulling": false,
+            "emissive": {
                 "color": [
                     0.30,
                     0.65,
@@ -28,11 +29,60 @@
         },
         {
             "name": "purple",
-            "diffuse": {
+            "emissive": {
                 "color": [
                     0.40,
                     0.20,
                     0.45
+                ]
+            }
+        },
+        {
+            "name": "darkBrown",
+            "emissive": {
+                "color": [
+                    0.06, 
+                    0.04, 
+                    0.02
+                ]
+            }, 
+            "diffuse": {
+                "color": [
+                    0, 
+                    0, 
+                    0
+                ]
+            },
+            "specular": {
+                "color": [
+                    0, 
+                    0, 
+                    0
+                ]
+            }
+        },
+        {
+            "name": "boxMaterial",
+            "backFaceCulling": false,
+            "emissive": {
+                "color": [
+                    0.12, 
+                    0.08, 
+                    0.04
+                ]
+            }, 
+            "diffuse": {
+                "color": [
+                    0, 
+                    0, 
+                    0
+                ]
+            },
+            "specular": {
+                "color": [
+                    0, 
+                    0, 
+                    0
                 ]
             }
         }
@@ -45,20 +95,16 @@
         {
             "target": "Field",
             "material": "lightWood"
+        },
+        {
+            "target": "Ground",
+            "material": "darkBrown"
+        },
+        {
+            "target": "Box",
+            "material": "boxMaterial"
         }
     ],
-    "skybox": {
-        "path": "skybox/face",
-        "extensions": [
-            "_px.png",
-            "_py.png",
-            "_pz.png",
-            "_nx.png",
-            "_ny.png",
-            "_nz.png"
-        ],
-        "size": 10000
-    },
     "camera": {},
     "lights": {},
     "players": [

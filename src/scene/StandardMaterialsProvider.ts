@@ -49,6 +49,9 @@ export class StandardMaterialsProvider implements IMaterialsProvider {
                     material[type + "Texture"].vScale = config[type].vScale;
                 }
             }
-        })
+        });
+        if (config.hasOwnProperty("backFaceCulling")) {
+            material.backFaceCulling = config.backFaceCulling;
+        }
     }
 }

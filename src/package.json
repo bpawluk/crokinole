@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "babylonjs": "^4.1.0",
     "inversify": "^5.0.1",
     "reflect-metadata": "^0.1.13",
     "strongly-typed-events": "^1.6.11",

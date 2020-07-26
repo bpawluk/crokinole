@@ -18,7 +18,8 @@
         "**/*",
         "Game.ts",
         "main.ts",
-        "babylon.d.ts"
+        "babylon.d.ts",
+        "babylon.gui.d.ts"
     ],
     "exclude": [
         "node_modules",
