@@ -43,6 +43,8 @@ import { IMaterialsProvider } from "../scene/interfaces/IMaterialsProvider";
 import { StandardMaterialsProvider } from "../scene/StandardMaterialsProvider";
 import { ISkyboxBuilder } from "../scene/interfaces/ISkyboxBuilder";
 import { SkyboxBuilder } from "../scene/SkyboxBuilder";
+import { IFramesTimer } from "../helpers/interfaces/IFramesTimer";
+import { FramesTimer } from "../helpers/FramesTimer";
 
 const gameDependencyContainer = new Container();
 
@@ -69,6 +71,7 @@ gameDependencyContainer.bind<IMenuGui>(TYPES.IMenuGui).to(MenuGui).inSingletonSc
 // helpers 
 gameDependencyContainer.bind<ICacheManager>(TYPES.ICacheManager).to(MemoryCacheManager).inSingletonScope();
 gameDependencyContainer.bind<IComplexShapesBuilder>(TYPES.IComplexShapesBuilder).to(ComplexShapesBuilder);
+gameDependencyContainer.bind<IFramesTimer>(TYPES.IFramesTimer).to(FramesTimer).inSingletonScope();
 gameDependencyContainer.bind<IHttpRequestSender>(TYPES.IHttpRequestSender).to(HttpRequestSender);
 gameDependencyContainer.bind<IPointerEventsManager>(TYPES.IPointerEventsManager).to(PointerEventsManager).inSingletonScope();
 

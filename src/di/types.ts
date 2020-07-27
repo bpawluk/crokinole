@@ -22,6 +22,7 @@ export const TYPES = {
     // helpers
     ICacheManager: Symbol.for("ICacheManager"),
     IComplexShapesBuilder: Symbol.for("IComplexShapesBuilder"),
+    IFramesTimer: Symbol.for("IFramesTimer"),
     IHttpRequestSender: Symbol.for("IHttpRequestSender"),
     IPointerEventsManager: Symbol.for("IPointerEventsManager"),
 

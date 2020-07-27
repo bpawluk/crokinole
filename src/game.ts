@@ -8,6 +8,7 @@ import { IMakingMoveGui } from "./gui/interfaces/IMakingMoveGui";
 import { IMenuGui } from "./gui/interfaces/IMenuGui";
 import { IPawnProvider } from "./game_logic/interfaces/IPawnProvider";
 import { IConfigProvider } from "./config/IConfigProvider";
+import { IFramesTimer } from "./helpers/interfaces/IFramesTimer";
 
 @injectable()
 export class Game implements Game {
@@ -24,6 +25,7 @@ export class Game implements Game {
     @inject(TYPES.IGuiProvider) private _guiProvider: IGuiProvider;
     @inject(TYPES.IMakingMoveGui) private _makingMoveGui: IMakingMoveGui;
     @inject(TYPES.IConfigProvider) private _configProvider: IConfigProvider;
+    @inject(TYPES.IFramesTimer) private _frameTimer: IFramesTimer;
     @inject(TYPES.IMenuGui) private _menuGui: IMenuGui;
 
     constructor(@inject(TYPES.canvas_name) canvasElement: string) {
@@ -53,9 +55,11 @@ export class Game implements Game {
     }
 
     private async _initServices(): Promise<void> {
+        // TODO: Remove public init methods and provide event for services to subcribe and init when scene is ready
         this._pawnProvider.init(this._scene);
         this._guiProvider.init(this._scene);
         this._makingMoveGui.init(this._scene);
+        this._frameTimer.init(this._scene);
     }
 
     private _doRender(): void {

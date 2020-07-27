@@ -23,7 +23,7 @@ export class PawnProvider implements IPawnProvider {
     createPawn(color: string): Pawn {
         var disc = BABYLON.MeshBuilder.CreateCylinder("disc", { height: .12, diameter: 0.32, tessellation: 20 }, this._scene);
         disc.position = this._pawnPositionHelper.getStartingPosition(color);
-        disc.material = this._materials.get(color);
+        disc.material = this._materials.get(color); // TODO: Use config
         disc.physicsImpostor = new BABYLON.PhysicsImpostor(disc, BABYLON.PhysicsImpostor.CylinderImpostor, { mass: 1, restitution: 0.75, friction: 0 }, this._scene);
         disc.physicsImpostor.registerAfterPhysicsStep(impostor => {
             var currentVelocity = impostor.getLinearVelocity();

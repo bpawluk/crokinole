@@ -3,11 +3,13 @@ import { TYPES } from "../di/types";
 import { IMakingMoveGui } from "./interfaces/IMakingMoveGui";
 import { IGuiProvider } from "./interfaces/IGuiProvider";
 import { IPointerEventsManager } from "../helpers/interfaces/IPointerEventsManager";
-import { ISceneBuilder } from "../scene/interfaces/ISceneBuilder";
+import { MathUtils } from "../utils/MathUtils";
+import { IFramesTimer } from "../helpers/interfaces/IFramesTimer";
 
 @injectable()
 export class MakingMoveGui implements IMakingMoveGui {
     @inject(TYPES.IGuiProvider) private _guiProvider: IGuiProvider;
+    @inject(TYPES.IFramesTimer) private _frameTimer: IFramesTimer;
     @inject(TYPES.IPointerEventsManager) private _userInput: IPointerEventsManager;
     private _scene: BABYLON.Scene;
 
@@ -43,14 +45,14 @@ export class MakingMoveGui implements IMakingMoveGui {
         this._guiProvider.attachControl(this._choosePositionGui);
 
         this._moveLeft.onPointerDownObservable.add((data, state) => {
-            moveLeftInterval = setInterval(() => moveLeft(), 25);
+            moveLeftInterval = setInterval(() => moveLeft(), 25); // TODO: Replace with before render
         });
         this._moveLeft.onPointerUpObservable.add((data, state) => {
             clearInterval(moveLeftInterval);
         });
 
         this._moveRight.onPointerDownObservable.add((data, state) => {
-            moveRightInterval = setInterval(() => moveRight(), 25);
+            moveRightInterval = setInterval(() => moveRight(), 25); // TODO: Replace with before render
         });
         this._moveRight.onPointerUpObservable.add((data, state) => {
             clearInterval(moveRightInterval);
@@ -123,21 +125,24 @@ export class MakingMoveGui implements IMakingMoveGui {
     }
 
     showChooseForceGui(setForce: Function, accept: Function): void {
-        var step = 0.02
+        var step = 0.002
         var minForce = 0.05;
         var maxForce = 1;
         var force = minForce;
         this._progressBar.widthInPixels = force * this._progressBarWidth;
         this._guiProvider.attachControl(this._progressBar);
 
-        var chooseForce = setInterval(() => {
-            if (force + step < minForce || force + step > maxForce) step = -step;
-            force += step;
+        var interval = () => {
+            var currentStep = step * this._frameTimer.timeSinceLastFrame();
+            if (force + currentStep < minForce || force + currentStep > maxForce) step = -step;
+            force = MathUtils.clamp(force + currentStep, minForce, maxForce);
             this._progressBar.widthInPixels = force * this._progressBarWidth;
-        }, 10);
+        };
+
+        this._scene.registerBeforeRender(interval);
 
         this._userInput.registerOneCallListener(BABYLON.PointerEventTypes.POINTERDOWN, (info, event) => {
-            clearInterval(chooseForce);
+            this._scene.unregisterBeforeRender(interval);
             this._guiProvider.detachControl(this._progressBar);
             setForce(force);
             accept();
