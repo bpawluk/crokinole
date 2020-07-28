@@ -12,7 +12,6 @@ export class LocalPlayer implements IPlayer {
 
     private _movingDiscRotationCentre: BABYLON.Vector3;
     private _movingDiscRotationAxis: BABYLON.Vector3;
-    private _movingDiscRotationRadians: number;
 
     private _color: string;
     get color() {
@@ -27,7 +26,6 @@ export class LocalPlayer implements IPlayer {
 
         this._movingDiscRotationCentre = BABYLON.Vector3.Zero();
         this._movingDiscRotationAxis = new BABYLON.Vector3(0, 1, 0);
-        this._movingDiscRotationRadians = .01;
     }
 
     async move(): Promise<Pawn> {
@@ -47,16 +45,16 @@ export class LocalPlayer implements IPlayer {
     private async _choosePosition(disc: BABYLON.Mesh): Promise<void> {
         this._followDiscWithCamera(disc);
         var initialPosition = disc.position;
-        var moveLeft = () => {
+        var moveLeft = (step: number) => {
             var currentPosition = disc.position;
             if (this._normalize(Math.atan2(currentPosition.z, currentPosition.x) - Math.atan2(initialPosition.z, initialPosition.x)) > - Math.PI / 4) {
-                this._moveDiscByRadians(disc, this._movingDiscRotationRadians)
+                this._moveDiscByRadians(disc, step)
             }
         };
-        var moveRight = () => {
+        var moveRight = (step: number) => {
             var currentPosition = disc.position;
             if (this._normalize(Math.atan2(currentPosition.z, currentPosition.x) - Math.atan2(initialPosition.z, initialPosition.x)) < Math.PI / 4) {
-                this._moveDiscByRadians(disc, -this._movingDiscRotationRadians);
+                this._moveDiscByRadians(disc, -step);
             }
         };
         await new Promise<void>((resolve) => {

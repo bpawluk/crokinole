@@ -40,22 +40,30 @@ export class MakingMoveGui implements IMakingMoveGui {
     }
 
     showChoosePositionGui(moveLeft: Function, moveRight: Function, accept: Function): void {
-        var moveLeftInterval, moveRightInterval;
+        var moveStep = 0.001;
+
+        var moveLeftInterval = () => {
+            moveLeft(moveStep * this._frameTimer.timeSinceLastFrame());
+        };
+
+        var moveRightInterval = () => {
+            moveRight(moveStep * this._frameTimer.timeSinceLastFrame());
+        };
 
         this._guiProvider.attachControl(this._choosePositionGui);
 
         this._moveLeft.onPointerDownObservable.add((data, state) => {
-            moveLeftInterval = setInterval(() => moveLeft(), 25); // TODO: Replace with before render
+            this._scene.registerBeforeRender(moveLeftInterval);
         });
         this._moveLeft.onPointerUpObservable.add((data, state) => {
-            clearInterval(moveLeftInterval);
+            this._scene.unregisterBeforeRender(moveLeftInterval);
         });
 
         this._moveRight.onPointerDownObservable.add((data, state) => {
-            moveRightInterval = setInterval(() => moveRight(), 25); // TODO: Replace with before render
+            this._scene.registerBeforeRender(moveRightInterval);
         });
         this._moveRight.onPointerUpObservable.add((data, state) => {
-            clearInterval(moveRightInterval);
+            this._scene.unregisterBeforeRender(moveRightInterval);
         });
 
         this._accept.onPointerUpObservable.addOnce((data, state) => {
@@ -125,7 +133,7 @@ export class MakingMoveGui implements IMakingMoveGui {
     }
 
     showChooseForceGui(setForce: Function, accept: Function): void {
-        var step = 0.002
+        var step = 0.003
         var minForce = 0.05;
         var maxForce = 1;
         var force = minForce;
@@ -201,7 +209,7 @@ export class MakingMoveGui implements IMakingMoveGui {
         var corners = [new BABYLON.Vector2(0, 0.1), new BABYLON.Vector2(-0.1, -0.1), new BABYLON.Vector2(0, -0.05), new BABYLON.Vector2(0.1, -0.1)];
         var builder = new BABYLON.PolygonMeshBuilder("polytri", corners, this._scene);
         var pointerTip = builder.build(null, 0.005);
-        pointerTip.rotate(new BABYLON.Vector3(0,1,0), Math.PI/2);
+        pointerTip.rotate(new BABYLON.Vector3(0, 1, 0), Math.PI / 2);
         pointerTip.position.x = 0.25;
         pointerTip.material = this._scene.getMaterialByID("Green");
 
