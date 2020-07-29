@@ -1,14 +1,6 @@
 {
     "materials": [
         {
-            "name": "lightWood",
-            "diffuse": {
-                "texture": "light-wood.jpg",
-                "uScale": 7,
-                "vScale": 7
-            }
-        },
-        {
             "name": "darkWood",
             "diffuse": {
                 "texture": "dark-wood.jpg",
@@ -18,7 +10,7 @@
         },
         {
             "name": "cyan",
-            "emissive": {
+            "diffuse": {
                 "color": [
                     0.30,
                     0.65,
@@ -28,11 +20,31 @@
         },
         {
             "name": "purple",
-            "emissive": {
+            "diffuse": {
                 "color": [
                     0.40,
                     0.20,
                     0.45
+                ]
+            }
+        },
+        {
+            "name": "brown",
+            "diffuse": {
+                "color": [
+                    0.8,
+                    0.6,
+                    0.3
+                ]
+            }
+        },
+        {
+            "name": "gray",
+            "diffuse": {
+                "color": [
+                    0.18,
+                    0.14,
+                    0.12
                 ]
             }
         }
@@ -44,7 +56,11 @@
         },
         {
             "target": "Field",
-            "material": "lightWood"
+            "material": "brown"
+        },
+        {
+            "target": "Pins",
+            "material": "gray"
         }
     ],
     "skybox": {

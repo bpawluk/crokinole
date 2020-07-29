@@ -5,13 +5,19 @@ import { IGuiProvider } from "./interfaces/IGuiProvider";
 import { IPointerEventsManager } from "../helpers/interfaces/IPointerEventsManager";
 import { MathUtils } from "../utils/MathUtils";
 import { IFramesTimer } from "../helpers/interfaces/IFramesTimer";
+import { SceneInitialable } from "../utils/SceneInitialable";
+import { ISceneBuilder } from "../scene/interfaces/ISceneBuilder";
 
 @injectable()
-export class MakingMoveGui implements IMakingMoveGui {
+export class MakingMoveGui extends SceneInitialable implements IMakingMoveGui {
     @inject(TYPES.IGuiProvider) private _guiProvider: IGuiProvider;
     @inject(TYPES.IFramesTimer) private _frameTimer: IFramesTimer;
     @inject(TYPES.IPointerEventsManager) private _userInput: IPointerEventsManager;
     private _scene: BABYLON.Scene;
+
+    constructor(@inject(TYPES.ISceneBuilder) sceneBuilder: ISceneBuilder) {
+        super(sceneBuilder);
+    }
 
     // choosePositionGui
     private _choosePositionGui: BABYLON.GUI.Control;
@@ -30,14 +36,6 @@ export class MakingMoveGui implements IMakingMoveGui {
     // chooseForce
     private _progressBar: BABYLON.GUI.Control;
     private _progressBarWidth = 400;
-
-    init(scene: BABYLON.Scene): void {
-        this._scene = scene;
-        this._constructChoosePositionGui();
-        this._constructChooseContactPointGui();
-        this._constructChooseDirectionGui();
-        this._constructChooseForceGui();
-    }
 
     showChoosePositionGui(moveLeft: Function, moveRight: Function, accept: Function): void {
         var moveStep = 0.001;
@@ -234,5 +232,14 @@ export class MakingMoveGui implements IMakingMoveGui {
         progressBar.background = "green";
         progressBar.paddingBottomInPixels = 50;
         this._progressBar = progressBar;
+    }
+
+    protected _init(scene: BABYLON.Scene): void {
+        super._init(scene);
+        this._scene = scene;
+        this._constructChoosePositionGui();
+        this._constructChooseContactPointGui();
+        this._constructChooseDirectionGui();
+        this._constructChooseForceGui();
     }
 }

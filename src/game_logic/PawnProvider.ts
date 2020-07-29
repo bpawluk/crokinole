@@ -3,21 +3,19 @@ import { injectable, inject } from "inversify";
 import { Pawn } from "../model/Pawn";
 import { TYPES } from "../di/types";
 import { IPawnPositionHelper } from "./interfaces/IPawnPositionHelper";
+import { ISceneBuilder } from "../scene/interfaces/ISceneBuilder";
+import { SceneInitialable } from "../utils/SceneInitialable";
 
 @injectable()
-export class PawnProvider implements IPawnProvider {
+export class PawnProvider extends SceneInitialable implements IPawnProvider {
     private _scene: BABYLON.Scene;
-
     private _frictionCoef: number = 0.02; 
     private _materials: Map<string, BABYLON.Material>;
 
     @inject(TYPES.IPawnPositionHelper) _pawnPositionHelper: IPawnPositionHelper;
 
-    init(scene: BABYLON.Scene): void {
-        this._scene = scene;
-        this._materials = new Map();
-        this._materials.set("Cyan", new BABYLON.StandardMaterial("a", this._scene));
-        this._materials.set("Purple", new BABYLON.StandardMaterial("b", this._scene));
+    constructor(@inject(TYPES.ISceneBuilder) sceneBuilder: ISceneBuilder) {
+        super(sceneBuilder);
     }
     
     createPawn(color: string): Pawn {
@@ -32,5 +30,13 @@ export class PawnProvider implements IPawnProvider {
             impostor.setAngularVelocity(currentAngularVelocity.multiplyByFloats(1 - this._frictionCoef, 1 - this._frictionCoef, 1 - this._frictionCoef))
         });
         return new Pawn(disc, color, this._pawnPositionHelper);
+    }
+
+    protected _init(scene: BABYLON.Scene): void {
+        super._init(scene);
+        this._scene = scene;
+        this._materials = new Map();
+        this._materials.set("Cyan", new BABYLON.StandardMaterial("a", this._scene));
+        this._materials.set("Purple", new BABYLON.StandardMaterial("b", this._scene));
     }
 }
