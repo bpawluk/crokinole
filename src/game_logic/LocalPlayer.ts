@@ -3,7 +3,6 @@ import { IPlayer } from "./interfaces/IPlayer";
 import { ICameraManager } from "../scene/interfaces/ICameraManager";
 import { IMakingMoveGui } from "../gui/interfaces/IMakingMoveGui";
 import { IPawnProvider } from "./interfaces/IPawnProvider";
-import { IPawnPositionHelper } from "./interfaces/IPawnPositionHelper";
 
 export class LocalPlayer implements IPlayer {
     private _cameraManager: ICameraManager;

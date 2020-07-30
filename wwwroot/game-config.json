@@ -79,11 +79,11 @@
     "lights": {},
     "players": [
         {
-            "name": "Cyan",
+            "color": "Cyan",
             "material": "cyan"
         },
         {
-            "name": "Purple",
+            "color": "Purple",
             "material": "purple"
         }
     ]
