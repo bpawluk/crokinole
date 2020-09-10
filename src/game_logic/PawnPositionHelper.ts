@@ -7,7 +7,8 @@ export class PawnPositionHelper implements IPawnPositionHelper {
 
     public constructor() {
         this._startingPositions = new Map<string, BABYLON.Vector3>();
-        this._startingPositions.set("Cyan", new BABYLON.Vector3(2.2556, 0.395, 2.2556));
+        // TODO Move all to config
+        this._startingPositions.set("Orange", new BABYLON.Vector3(2.2556, 0.395, 2.2556)); 
         this._startingPositions.set("Purple", new BABYLON.Vector3(-2.2556, 0.395, -2.2556));
     }
 

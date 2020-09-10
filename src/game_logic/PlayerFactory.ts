@@ -6,7 +6,6 @@ import { LocalPlayer } from "./LocalPlayer";
 import { ICameraManager } from "../scene/interfaces/ICameraManager";
 import { IMakingMoveGui } from "../gui/interfaces/IMakingMoveGui";
 import { IPawnProvider } from "./interfaces/IPawnProvider";
-import { IPawnPositionHelper } from "./interfaces/IPawnPositionHelper";
 
 @injectable()
 export class PlayerFactory implements IPlayerFactory {

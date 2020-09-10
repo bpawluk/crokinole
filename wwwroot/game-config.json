@@ -1,4 +1,5 @@
 {
+    "configuration": "debug",
     "materials": [
         {
             "name": "darkWood",
@@ -9,12 +10,12 @@
             }
         },
         {
-            "name": "cyan",
+            "name": "orange",
             "diffuse": {
                 "color": [
-                    0.30,
+                    1.00,
                     0.65,
-                    0.65
+                    0.30
                 ]
             }
         },
@@ -22,9 +23,9 @@
             "name": "purple",
             "diffuse": {
                 "color": [
-                    0.40,
-                    0.20,
-                    0.45
+                    0.25,
+                    0.12,
+                    0.40
                 ]
             }
         },
@@ -32,9 +33,9 @@
             "name": "brown",
             "diffuse": {
                 "color": [
-                    0.8,
-                    0.6,
-                    0.3
+                    0.85,
+                    0.65,
+                    0.40
                 ]
             }
         },
@@ -79,8 +80,8 @@
     "lights": {},
     "players": [
         {
-            "color": "Cyan",
-            "material": "cyan"
+            "color": "Orange",
+            "material": "orange"
         },
         {
             "color": "Purple",

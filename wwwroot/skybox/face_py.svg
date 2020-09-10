@@ -3,11 +3,11 @@
   <defs>
     <radialGradient id="gradient-1" bx:pinned="true">
       <title>radial01</title>
-      <stop offset="0.5" style="stop-color: rgb(30, 16, 2);"/>
-      <stop offset="1" style="stop-color: rgb(85, 38, 16);"/>
+      <stop offset="0.5" style="stop-color: rgb(26, 14, 25);"/>
+      <stop offset="1" style="stop-color: rgb(51, 28, 49);"/>
     </radialGradient>
     <radialGradient id="gradient-1-0" gradientUnits="userSpaceOnUse" cx="250" cy="250" r="250" xlink:href="#gradient-1"/>
   </defs>
-  <rect y="0" width="500" height="500" style="fill: rgb(85, 38, 16);"/>
+  <rect y="0" width="500" height="500" style="fill: rgb(51, 28, 49);"/>
   <circle style="fill: url(#gradient-1-0);" cx="250" cy="250" r="250"/>
 </svg>

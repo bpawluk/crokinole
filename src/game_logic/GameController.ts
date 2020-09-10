@@ -53,7 +53,7 @@ export class GameController implements IGameController {
     }
 
     private _initGame(): void {
-        var firstPlayer = this._playerFactory.provideLocalPlayer("Cyan"); // TODO: Use config
+        var firstPlayer = this._playerFactory.provideLocalPlayer("Orange"); // TODO: Use config
         var secondPlayer = this._playerFactory.provideLocalPlayer("Purple");
         this._gameState = new GameState([firstPlayer, secondPlayer], this._pawnPositionHelper);
         this._onStepTarget = this._sceneProvider.scene.getMeshByName("outerField").physicsImpostor;
