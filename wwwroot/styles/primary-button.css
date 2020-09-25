@@ -1,0 +1,109 @@
+button[class^=primaryButton] {
+    display: grid;
+    width: 25vh;
+    height: 7vh;
+    position: relative;
+    border-style: hidden;
+    font-family: sans-serif;
+    color: #FFFFFF;
+    border-radius: 1.5vh;
+    background: rgb(82, 42, 100);
+    background: linear-gradient(0deg, rgb(82, 42, 100) 0%, rgb(239, 154, 78) 100%);
+    transition-property: transform;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-out;
+    z-index: 0;
+}
+
+button[class^=primaryButton]:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 100%;  
+  border-radius: 0;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
+  z-index: -1;
+}
+
+button[class^=primaryButton]:active {
+  transform: translateY(4%);
+}
+
+button[class^=primaryButton]:focus {
+  outline: none;  
+}
+
+button[class^=primaryButton] p {
+  font-size: 3vh
+}
+
+.primaryButton:before {
+  justify-self: center;
+  background: rgb(239, 154, 78);
+  background: linear-gradient(0deg, rgb(239, 154, 78) 0%, rgb(82, 42, 100) 100%);
+}
+
+.primaryButton:hover:before, primaryButton:active:before {
+  transition-property: width, border-radius;
+  width: 100%;
+  border-radius: 1.5vh;
+}
+
+.primaryButtonLeft {
+  align-items: stretch;
+  background: rgb(82, 42, 100);
+  background: linear-gradient(0deg, rgb(82, 42, 100) 0%, rgb(239, 154, 78) 100%);
+  grid-template-columns: 28% auto;
+}
+
+.primaryButtonLeft:before {
+  left: 28%;
+  background: rgb(239, 154, 78);
+  background: linear-gradient(0deg, rgb(239, 154, 78) 0%, rgb(82, 42, 100) 100%);
+}
+
+.primaryButtonLeft:hover:before, primaryButtonLeft:active:before {
+  transition-property: width, border-top-right-radius, border-bottom-right-radius;
+  width: 72%;
+  border-top-right-radius: 1.5vh;
+  border-bottom-right-radius: 1.5vh;
+}
+
+.leftPrimaryButtonIconContainer {
+  background: rgb(239, 154, 78);
+  background: linear-gradient(0deg, rgb(239, 154, 78) 0%, rgb(82, 42, 100) 100%);
+  border-top-left-radius: 1.5vh;
+  border-bottom-left-radius: 1.5vh;
+  line-height: 7vh;
+}
+
+.primaryButtonRight {
+  align-items: stretch;
+  background: rgb(82, 42, 100);
+  background: linear-gradient(0deg, rgb(82, 42, 100) 0%, rgb(239, 154, 78) 100%);
+  grid-template-columns: auto 7vh;
+}
+
+.primaryButtonRight:before {
+  right: 28%;
+  background: rgb(239, 154, 78);
+  background: linear-gradient(0deg, rgb(239, 154, 78) 0%, rgb(82, 42, 100) 100%);
+  border-top-left-radius: 1.5vh;
+  border-bottom-left-radius: 1.5vh;
+}
+
+.primaryButtonRight:hover:before, primaryButtonRight:active:before {
+  transition-property: width, border-top-left-radius, border-bottom-left-radius;
+  width: 72%;
+  border-top-left-radius: 1.5vh;
+  border-bottom-left-radius: 1.5vh;
+}
+
+.rightPimaryButtonIconContainer {
+  background: rgb(239, 154, 78);
+  background: linear-gradient(0deg, rgb(239, 154, 78) 0%, rgb(82, 42, 100) 100%);
+  border-top-right-radius: 1.5vh;
+  border-bottom-right-radius: 1.5vh;
+  line-height: 7vh;
+}

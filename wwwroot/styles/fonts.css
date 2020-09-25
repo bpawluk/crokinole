@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'orkneybolditalic';
+    src: url('/assets/fonts/orkney_bold_italic-webfont.woff2') format('woff2'),
+         url('/assets/fonts/orkney_bold_italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'orkneybold';
+    src: url('/assets/fonts/orkney_bold-webfont.woff2') format('woff2'),
+         url('/assets/fonts/orkney_bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'orkneylight_italic';
+    src: url('/assets/fonts/orkney_light_italic-webfont.woff2') format('woff2'),
+         url('/assets/fonts/orkney_light_italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'orkneylight';
+    src: url('/assets/fonts/orkney_light-webfont.woff2') format('woff2'),
+         url('/assets/fonts/orkney_light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'orkneymedium_italic';
+    src: url('/assets/fonts/orkney_medium_italic-webfont.woff2') format('woff2'),
+         url('/assets/fonts/orkney_medium_italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'orkneymedium';
+    src: url('/assets/fonts/orkney_medium-webfont.woff2') format('woff2'),
+         url('/assets/fonts/orkney_medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'orkneyitalic';
+    src: url('/assets/fonts/orkney_regular_italic-webfont.woff2') format('woff2'),
+         url('/assets/fonts/orkney_regular_italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'orkneyregular';
+    src: url('/assets/fonts/orkney_regular-webfont.woff2') format('woff2'),
+         url('/assets/fonts/orkney_regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

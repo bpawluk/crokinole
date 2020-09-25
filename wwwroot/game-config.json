@@ -4,7 +4,7 @@
         {
             "name": "darkWood",
             "diffuse": {
-                "texture": "dark-wood.jpg",
+                "texture": "assets/dark-wood.jpg",
                 "uScale": 7,
                 "vScale": 7
             }

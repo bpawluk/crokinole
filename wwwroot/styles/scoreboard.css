@@ -1,0 +1,137 @@
+.scoreBoard {
+    position: absolute;
+    top: 0;
+    display: grid;
+    grid-template-columns: 35vw auto 35vw;
+    width: 100vw;
+    height: 10vh;
+}
+
+.scoreBoard p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.scoreBoard div[class$=PlayerData] {
+    display: grid;
+    height: 10vh;
+    width: 40vh;
+    z-index: 1;
+    margin: 2vh;
+}
+
+.scoreBoard .leftPlayerData {
+    grid-template-columns: 10vh auto;
+}
+
+.scoreBoard .rightPlayerData {
+    grid-template-columns: auto 10vh;
+    justify-self: right;
+}
+
+.scoreBoard .playerPawn {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.scoreBoard .playerPawn:before {
+    content: "";
+    position: absolute;
+    top: 15%;
+    height: 70%;
+    width: 50%;
+    z-index: -2;
+    background: rgb(82, 42, 100);
+    background: linear-gradient(0deg, rgb(82, 42, 100) 0%, rgb(239, 154, 78) 100%);
+}
+
+.scoreBoard .playerPawn:after {
+    content: "";
+    position: absolute;
+    top: 5%;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.scoreBoard .leftPlayerData .playerPawn:before {
+    left: 50%;
+}
+
+.scoreBoard .leftPlayerData .playerPawn:after {
+    background: rgb(239, 154, 78);
+    background: linear-gradient(270deg, rgb(239, 154, 78) 0%, rgb(82, 42, 100) 100%);
+}
+
+.scoreBoard .rightPlayerData .playerPawn:before {
+    right: 50%;
+}
+
+.scoreBoard .rightPlayerData .playerPawn:after {
+    background: rgb(82, 42, 100);
+    background: linear-gradient(270deg, rgb(82, 42, 100) 0%, rgb(239, 154, 78) 100%);
+}
+
+.scoreBoard .playerPawn p {
+    font-size: 5vh;
+}
+
+.scoreBoard .playerBar {
+    display: grid;
+    height: 70%;
+    width: 100%;
+    align-self: center;
+}
+
+.scoreBoard .playerBar p {
+    font-size: 3vh;
+}
+
+.scoreBoard .leftPlayerData .playerBar {
+    grid-template-columns: auto 10vh;
+}
+
+.scoreBoard .rightPlayerData .playerBar {
+    grid-template-columns: 10vh auto;
+    justify-items: right;
+}
+
+.scoreBoard .playerTagBar {
+    height: 100%;
+    width: 100%;
+}
+
+.scoreBoard .playerScoreBar {
+    height: 100%;
+    width: 70%;
+}
+
+.scoreBoard .leftPlayerData .playerScoreBar {
+    border-top-right-radius: 1.5vh;
+    border-bottom-right-radius: 1.5vh;
+}
+
+.scoreBoard .rightPlayerData .playerScoreBar {
+    border-top-left-radius: 1.5vh;
+    border-bottom-left-radius: 1.5vh;
+}
+
+/* @media (orientation: portrait) {
+    .scoreBoard .playerTagBar {
+        display: none;
+    }
+
+    .scoreBoard .leftPlayerData .playerBar {
+        grid-template-columns: 0 10vh;
+    }
+    
+    .scoreBoard .rightPlayerData .playerBar {
+        grid-template-columns: 10vh 0;
+        justify-items: right;
+    }
+} */

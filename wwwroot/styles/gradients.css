@@ -1,0 +1,19 @@
+.grad0-ora0-pur50 {
+    background: rgb(82, 42, 100);
+    background: linear-gradient(0deg, rgb(82, 42, 100) 0%, rgb(239, 154, 78) 50%);
+}
+
+.grad0-ora0-pur100 {
+    background: rgb(82, 42, 100);
+    background: linear-gradient(0deg, rgb(82, 42, 100) 0%, rgb(239, 154, 78) 100%);
+}
+
+.grad0-pur0-ora100 {
+    background: rgb(239, 154, 78);
+    background: linear-gradient(0deg, rgb(239, 154, 78) 0%, rgb(82, 42, 100) 100%);
+}
+
+.grad180-pur0-ora50 {
+    background: rgb(239, 154, 78);
+    background: linear-gradient(180deg, rgb(239, 154, 78) 0%, rgb(82, 42, 100) 50%);
+}

@@ -1,38 +1,20 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
     <title>Online Crokinole</title>
-    <!-- Link to the last version of BabylonJS -->
-    <script src="https://cdn.babylonjs.com/babylon.js"></script>
-    <!-- Link to the last version of BabylonJS GUI -->
-    <script src="https://cdn.babylonjs.com/gui/babylon.gui.min.js"></script>
-    <!-- Link to the last version of BabylonJS loaders to enable loading filetypes such as .gltf -->
-    <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
-    <!-- Link to pep.js to ensure pointer events work consistently in all browsers -->
-    <script src="https://code.jquery.com/pep/0.4.1/pep.js"></script>
-    <!-- Link to earcut - a dependency of Babylon Polygon Builder -->
-    <script src="https://unpkg.com/earcut@2.1.1/dist/earcut.min.js"></script>
-    <!-- Cannon.js physics engine -->
-    <script src="cannon.js"></script>
-    <!-- Game logic -->
-    <script src="main.js"></script>
-    <!-- Styles -->
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <!-- Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
-    <link rel="manifest" href="/favicons/site.webmanifest">
-    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="shortcut icon" href="/favicons/favicon.ico">
-    <meta name="msapplication-TileColor" content="#603cba">
-    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">
+    <partial name="_Scripts.cshtml" />
+    <partial name="_Styles.cshtml" />
+    <partial name="_Assets.cshtml" />
 </head>
 <body>
     <div id="loadingScreen">
-        <img id="game-logo" src="online-crokinole-logo.svg" alt="Online Crokinole">
+        <img id="game-logo" src="/assets/online-crokinole-logo.svg" alt="Online Crokinole">
+    </div>
+    <div id="choosePosition">
+        <partial name="_ScoreBoard.cshtml" />
+        <partial name="_ChoosePosition.cshtml" />
     </div>
     <canvas id="game"></canvas>
     <div id="fps">0</div>
