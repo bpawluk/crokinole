@@ -121,17 +121,20 @@
     border-bottom-left-radius: 1.5vh;
 }
 
-/* @media (orientation: portrait) {
+@media (orientation: portrait) {
+    .scoreBoard div[class$=PlayerData] {
+        width: auto;
+    }
+
     .scoreBoard .playerTagBar {
         display: none;
     }
 
     .scoreBoard .leftPlayerData .playerBar {
-        grid-template-columns: 0 10vh;
+        grid-template-columns: 10vh;
     }
     
     .scoreBoard .rightPlayerData .playerBar {
-        grid-template-columns: 10vh 0;
-        justify-items: right;
+        grid-template-columns: 10vh;
     }
-} */
+}
