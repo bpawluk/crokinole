@@ -1,0 +1,66 @@
+button {
+    cursor: pointer;
+}
+
+.mainMenu {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto auto;
+    justify-items:  center;
+    align-items: start;
+    background: #261525;
+}
+
+.mainMenu .gameLogo {
+    display: grid;
+    justify-items: center;
+    align-self: end;
+}
+
+.mainMenu .gameLogo > img {
+    width: 20vh;
+    height: 20vh;
+}
+
+.mainMenu .gameLogo > p {
+    text-align: center;
+    font-size: 8vh;
+    color: rgb(239, 154, 78);
+}
+
+.mainMenu .menuItems > li {
+    margin: 3vh;
+    list-style: none;
+}
+
+.mainMenu .menuItems button {
+    font-size: 5vh;
+    font-family: 'orkneybold', sans-serif;
+    height: 100%;
+    width: 100%;
+    background: none;
+    color: #eee;
+    border-style: none;
+    padding: 1vh;
+    border-radius: 3vh;
+    transition-property: transform, border-radius;
+    transition-duration: 0.1s, 0.3s;
+    transition-timing-function: ease-out;
+}
+
+.mainMenu .menuItems button:hover {
+    border-radius: 1.5vh;
+    background: linear-gradient(0deg, rgb(82, 42, 100) 0%, rgb(239, 154, 78) 100%);
+}
+
+
+.mainMenu .menuItems button:focus {
+    outline: none;
+}
+
+.mainMenu .menuItems button:active {
+    transform: translateY(4%);
+}
+
