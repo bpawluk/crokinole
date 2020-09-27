@@ -1,0 +1,19 @@
+.message {
+    position: absolute;
+    top: 12vh;
+    display: grid;
+    grid-template-rows: 7vh auto;
+    width: 50vw;
+    margin-left: 25vw;
+    margin-right: 25vh;
+    justify-items: center;
+}
+
+.message img {
+    height: 100%;
+}
+
+.message p {
+    font-size: 3vh;
+    text-align: center;
+}

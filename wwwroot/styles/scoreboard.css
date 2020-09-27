@@ -18,7 +18,7 @@
 .scoreBoard div[class$=PlayerData] {
     display: grid;
     height: 10vh;
-    width: 40vh;
+    width: 35vh;
     z-index: 1;
     margin: 2vh;
 }
@@ -93,11 +93,11 @@
 }
 
 .scoreBoard .leftPlayerData .playerBar {
-    grid-template-columns: auto 10vh;
+    grid-template-columns: auto 7vh 1vh;
 }
 
 .scoreBoard .rightPlayerData .playerBar {
-    grid-template-columns: 10vh auto;
+    grid-template-columns: 1vh 7vh auto;
     justify-items: right;
 }
 
@@ -108,7 +108,7 @@
 
 .scoreBoard .playerScoreBar {
     height: 100%;
-    width: 70%;
+    width: 100%;
 }
 
 .scoreBoard .leftPlayerData .playerScoreBar {
@@ -121,6 +121,39 @@
     border-bottom-left-radius: 1.5vh;
 }
 
+.scoreBoard .playerRounds {
+    width: 100%;
+    height: 85%;
+    display: grid;
+    grid-template-rows: 45% 45%;
+    grid-row-gap: 10%;
+    align-self: center;
+}
+
+.scoreBoard .round {
+    width: 60%;
+    height: 100%;
+    background: #eee7;
+    border-radius: 1.5vh;
+
+}
+
+.scoreBoard .roundWon {
+    width: 60%;
+    height: 100%;
+    background: #eee;
+    border-radius: 1.5vh;
+
+}
+
+.scoreBoard .leftPlayerData .round {
+    justify-self: right;
+}
+
+.scoreBoard .leftPlayerData .roundWon {
+    justify-self: right;
+}
+
 @media (orientation: portrait) {
     .scoreBoard div[class$=PlayerData] {
         width: auto;
@@ -131,10 +164,10 @@
     }
 
     .scoreBoard .leftPlayerData .playerBar {
-        grid-template-columns: 10vh;
+        grid-template-columns: 7vh 1vh;
     }
     
     .scoreBoard .rightPlayerData .playerBar {
-        grid-template-columns: 10vh;
+        grid-template-columns: 1vh 7vh;
     }
 }
